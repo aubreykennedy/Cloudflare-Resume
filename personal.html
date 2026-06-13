@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Track | Aubrey Kennedy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 font-sans text-slate-800 antialiased min-h-screen flex flex-col justify-between">
+
+    <!-- Sticky Header Navigation -->
+    <header class="sticky top-0 z-50 border-b border-slate-200 bg-white/80 backdrop-blur-md">
+        <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+            <a href="index.html" class="text-xl font-bold tracking-tight text-slate-900">aubrey<span class="text-indigo-600">kennedy</span>.com</a>
+            <nav class="flex gap-6 font-medium text-slate-600">
+                <a href="index.html#about" class="hover:text-indigo-600 transition">About</a>
+                <a href="professional.html" class="hover:text-indigo-600 transition">Professional</a>
+                <a href="personal.html" class="text-indigo-600 font-semibold">Personal</a>
+                <a href="contact.html" class="hover:text-indigo-600 transition">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Layout -->
+    <main class="mx-auto max-w-6xl px-6 py-16 w-full flex-grow">
+        
+        <!-- Page Intro Header -->
+        <section class="w-full mb-12 border-b border-slate-200 pb-10">
+            <h1 class="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">Beyond the Laboratory</h1>
+            <p class="mt-2 text-slate-600">A decentralized tracker for intellectual pursuits, creative metrics, and culinary experiments.</p>
+        </section>
+
+        <!-- Two-Column Balanced Grid -->
+        <div class="grid gap-8 lg:grid-cols-3">
+            
+            <!-- MAIN LEFT COLUMN: Literary, Travel & Recipes (2 Spans Wide) -->
+            <div class="space-y-12 lg:col-span-2">
+                
+                <!-- MODULE 1: The Literary Archive -->
+                <section class="space-y-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <div>
+                            <h2 class="text-2xl font-bold tracking-tight text-slate-900">The Literary Archive</h2>
+                            <p class="text-xs text-slate-500 mt-0.5">Tracking reading volume, reviews, and library recommendations.</p>
+                        </div>
+                        <span class="text-xs font-mono font-bold text-indigo-700 bg-indigo-50 border border-indigo-100 px-3 py-1 rounded-xl shadow-sm">30+ BOOKS COMPLETED THIS YEAR</span>
+                    </div>
+
+                    <!-- Book Catalog Rows -->
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-4 bg-white border border-slate-200 rounded-2xl p-5 shadow-sm transition hover:shadow-md">
+                            <div class="w-12 h-16 bg-slate-100 border border-slate-200 rounded-md flex-shrink-0 flex items-center justify-center text-sm">📚</div>
+                            <div class="flex-grow">
+                                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                                    <h4 class="font-bold text-slate-900 text-base leading-tight">TBD Book Title 1</h4>
+                                    <span class="rounded bg-slate-100 border border-slate-200 px-2 py-0.5 text-[10px] font-mono font-bold text-slate-600 self-start sm:self-center">Genre Blueprint</span>
+                                </div>
+                                <p class="text-xs text-slate-500 font-medium mt-0.5">by TBD Author 1</p>
+                                <p class="text-xs text-slate-600 mt-2 leading-relaxed">Review placeholder. This canvas is structured to log notes, analytical breakdowns, or philosophical takeaways from your active reading list.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- MODULE 2: Expedition Logs & Future Blueprints -->
+                <section class="space-y-6 border-t border-slate-200 pt-10">
+                    <div>
+                        <h2 class="text-2xl font-bold tracking-tight text-slate-900">Expedition & Route Logs</h2>
+                        <p class="text-xs text-slate-500 mt-0.5">Documenting global journeys, backcountry tracking, and custom travel blueprints.</p>
+                    </div>
+
+                    <div class="grid gap-6 sm:grid-cols-2">
+                        <!-- Location 1: Iceland -->
+                        <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-xs font-mono font-bold text-emerald-600 bg-emerald-50 border border-emerald-100 px-2 py-0.5 rounded-md">PASSPORT STAMPED</span>
+                                <span class="text-xl">🇮🇸</span>
+                            </div>
+                            <h4 class="font-bold text-slate-900 text-base">Iceland Route Circuit</h4>
+                            <p class="text-xs text-slate-500 mt-0.5">Ring Road, Waterfalls, & Volcanic Geomorphology</p>
+                            <p class="text-xs text-slate-600 mt-3 leading-relaxed">
+                                Navigated rugged black sand terrains, glacial valleys, and active geothermal rifts during a full cross-country loop trek.
+                            </p>
+                        </div>
+
+                        <!-- Location 2: Australia -->
+                        <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-xs font-mono font-bold text-emerald-600 bg-emerald-50 border border-emerald-100 px-2 py-0.5 rounded-md">PASSPORT STAMPED</span>
+                                <span class="text-xl">🇦🇺</span>
+                            </div>
+                            <h4 class="font-bold text-slate-900 text-base">Australia Coastline Track</h4>
+                            <p class="text-xs text-slate-500 mt-0.5">Maritime Systems & Ecological Circuits</p>
+                            <p class="text-xs text-slate-600 mt-3 leading-relaxed">
+                                Explored vast coastal loops, sub-tropical biomes, and southern hemisphere harbor navigation tracks.
+                            </p>
+                        </div>
+
+                        <!-- Dream Destination Itineraries (#goals) -->
+                        <div class="sm:col-span-2 rounded-2xl border border-dashed border-slate-200 bg-slate-50/50 p-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                            <div>
+                                <h4 class="font-bold text-slate-800 text-base flex items-center gap-2">
+                                    <span>🗺️</span> Custom Itinerary Vault: #goals
+                                </h4>
+                                <p class="text-xs text-slate-500 mt-1 max-w-xl">
+                                    Building highly detailed logistical routing sheets and travel spreadsheets for upcoming dream destinations. Staging master itineraries to execute down the road.
+                                </p>
+                            </div>
+                            <span class="rounded bg-amber-50 border border-amber-200 px-2.5 py-1 text-xs font-mono font-bold text-amber-700 whitespace-nowrap">Future Bucket List Blueprint</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- MODULE 3: The Culinary Workshop -->
+                <section class="space-y-6 border-t border-slate-200 pt-10">
+                    <div>
+                        <h2 class="text-2xl font-bold tracking-tight text-slate-900">The Culinary Workshop</h2>
+                        <p class="text-xs text-slate-500 mt-0.5">A curated logbook of heavily tested recipes, baker's percentages, and kitchen frameworks.</p>
+                    </div>
+
+                    <div class="grid gap-6 sm:grid-cols-2">
+                        <!-- Recipe Slot 1 -->
+                        <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm hover:shadow-md transition">
+                            <div class="flex justify-between items-start mb-3">
+                                <h4 class="font-bold text-slate-900 text-base">Artisanal Sourdough</h4>
+                                <span class="text-xs font-mono font-bold text-amber-700 bg-amber-50 border border-amber-100 px-2 py-0.5 rounded">Wild Fermentation</span>
+                            </div>
+                            <p class="text-xs text-slate-600 leading-relaxed">
+                                Log for tracking hydration ratios, ambient proofing schedules, and precise baker's percentages to achieve optimal open crumb architecture.
+                            </p>
+                        </div>
+
+                        <!-- Recipe Slot 2 -->
+                        <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm hover:shadow-md transition">
+                            <div class="flex justify-between items-start mb-3">
+                                <h4 class="font-bold text-slate-900 text-base">TBD Savory Main</h4>
+                                <span class="text-xs font-mono font-bold text-indigo-700 bg-indigo-50 border border-indigo-100 px-2 py-0.5 rounded">Italian / Scratch</span>
+                            </div>
+                            <p class="text-xs text-slate-600 leading-relaxed">
+                                Recipe notes blueprint. Ideal for documenting scratch-made emulsified sauces, custom flavor extractions, and high-heat techniques.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- SIDEBAR RIGHT COLUMN: Quantitative Skills (1 Span Wide) -->
+            <div class="space-y-8 lg:col-span-1">
+                
+                <!-- Box A: Language Scores -->
+                <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+                    <div class="flex items-center gap-2 text-indigo-600 mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9s2.015-9 4.5-9m0 0a9.015 9.015 0 018.716 2.253M12 3a9.015 9.015 0 00-8.716 2.253" />
+                        </svg>
+                        <h2 class="text-xs font-mono font-bold uppercase tracking-wider text-slate-500">Linguistics</h2>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-4">Language Fluency</h3>
+                    
+                    <div class="space-y-3.5">
+                        <div class="flex items-center justify-between border-b border-slate-50 pb-2.5">
+                            <span class="text-sm font-medium text-slate-700">English</span>
+                            <span class="rounded bg-slate-100 px-2 py-0.5 text-xs font-mono font-bold text-slate-600">Native</span>
+                        </div>
+                        <div class="flex items-center justify-between border-b border-slate-50 pb-2.5">
+                            <span class="text-sm font-medium text-slate-700">Spanish</span>
+                            <span class="rounded bg-indigo-50 border border-indigo-100 px-2 py-0.5 text-xs font-mono font-bold text-indigo-700">110 CEFR Score</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm font-medium text-slate-700">French</span>
+                            <span class="rounded bg-indigo-50 border border-indigo-100 px-2 py-0.5 text-xs font-mono font-bold text-indigo-700">130 CEFR Score</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Box B: Studio Arts (Minimalist block for oil paintings) -->
+                <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+                    <div class="flex items-center gap-2 text-indigo-600 mb-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9.53 16.122l9.37-9.37m0 0l-1.01-1.01a1.125 1.125 0 00-1.59 0l-8.38 8.381M19.5 6.75l-1.01-1.01a1.125 1.125 0 00-1.59 0L8.52 14.122M12.517 21H21m-3.962-3.037l-1.012-1.012A2.25 2.25 0 0014.422 16.5H12.51l-4.5 4.5H12.51l3.962-3.037z" />
+                        </svg>
+                        <h2 class="text-xs font-mono font-bold uppercase tracking-wider text-slate-500">Fine Art</h2>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900">Oil on Canvas Log</h3>
+                    <p class="mt-2 text-xs leading-relaxed text-slate-600">
+                        Maintaining a steady baseline production rate of approximately **6 custom oil installations per year**, experimenting with lighting models and stretchers. 
+                    </p>
+                    <div class="mt-4 pt-3 border-t border-slate-100">
+                        <span class="inline-flex items-center gap-1 text-[11px] font-semibold text-slate-400 font-mono">
+                            <span>🔒</span> Gallery View Staged for Later
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Global Footer Module -->
+    <footer class="border-t border-slate-200 bg-white py-8 text-center text-xs text-slate-400 w-full">
+        <p>&copy; 2026 Aubrey Kennedy. Powered by Cloudflare Pages.</p>
+    </footer>
+
+</body>
+</html>
