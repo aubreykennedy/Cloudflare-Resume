@@ -168,9 +168,13 @@
                             <span class="text-sm font-medium text-slate-700">Spanish</span>
                             <span class="rounded bg-indigo-50 border border-indigo-100 px-2 py-0.5 text-xs font-mono font-bold text-indigo-700">111 CEFR Score</span>
                         </div>
-                        <div class="flex items-center justify-between">
+                        <div class="flex items-center justify-between border-b border-slate-50 pb-2.5">
                             <span class="text-sm font-medium text-slate-700">French</span>
                             <span class="rounded bg-indigo-50 border border-indigo-100 px-2 py-0.5 text-xs font-mono font-bold text-indigo-700">130 CEFR Score</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm font-medium text-slate-700">Daily Practice</span>
+                            <span class="inline-flex items-center gap-1 ml-2 rounded-full bg-orange-50 border border-orange-100 px-2 py-0.5 text-xs font-semibold text-orange-600"> 🦉 <span id="duo-streak">1140</span> Day Streak</span>
                         </div>
                     </div>
                 </div>
@@ -291,6 +295,29 @@
             </div>
         `;
     }).join('');
+    </script>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        // Base alignment: June 13, 2026 is exactly day 1140
+        const baseDate = new Date("2026-06-13T00:00:00");
+        const baseStreak = 1140;
+        
+        // Get today's local date (ignoring time)
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        baseDate.setHours(0, 0, 0, 0);
+        
+        // Calculate difference in days
+        const msPerDay = 24 * 60 * 60 * 1000;
+        const daysDiff = Math.floor((today - baseDate) / msPerDay);
+        
+        // If days have passed, update the streak UI dynamically
+        if (daysDiff > 0) {
+            const currentStreak = baseStreak + daysDiff;
+            document.getElementById("duo-streak").textContent = currentStreak;
+        }
+    });
     </script>
 
 </body>
