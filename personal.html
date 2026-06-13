@@ -5,6 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personal Track | Aubrey Kennedy</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Force a clean, highly visible custom scrollbar for your library container */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9; /* slate-100 */
+            border-radius: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1; /* slate-300 */
+            border-radius: 8px;
+            border: 2px solid #f1f5f9;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8; /* slate-400 */
+        }
+    </style>
 </head>
 <body class="bg-slate-50 font-sans text-slate-800 antialiased min-h-screen flex flex-col justify-between">
 
@@ -26,8 +44,8 @@
         
         <!-- Page Intro Header -->
         <section class="w-full mb-12 border-b border-slate-200 pb-10">
-            <h1 class="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">Beyond the Laboratory</h1>
-            <p class="mt-2 text-slate-600">A decentralized tracker for intellectual pursuits, creative metrics, and culinary experiments.</p>
+            <h1 class="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">Beyond the Office</h1>
+            <p class="mt-2 text-slate-600">A tracker for intellectual pursuits, displays of creativity, and culinary masterpieces.</p>
         </section>
 
         <!-- Two-Column Balanced Grid -->
@@ -37,112 +55,95 @@
             <div class="space-y-12 lg:col-span-2">
                 
                 <!-- MODULE 1: The Literary Archive -->
-                <section class="space-y-6">
-                    <div class="flex items-center justify-between mb-4">
+                <section class="space-y-4">
+                    <div class="flex items-center justify-between mb-2">
                         <div>
                             <h2 class="text-2xl font-bold tracking-tight text-slate-900">The Literary Archive</h2>
-                            <p class="text-xs text-slate-500 mt-0.5">Tracking reading volume, reviews, and library recommendations.</p>
+                            <p class="text-xs font-semibold text-indigo-600 mt-0.5 tracking-wide uppercase">&darr; Scroll container below to view all entries</p>
                         </div>
-                        <span class="text-xs font-mono font-bold text-indigo-700 bg-indigo-50 border border-indigo-100 px-3 py-1 rounded-xl shadow-sm">30+ BOOKS COMPLETED THIS YEAR</span>
+                        <span class="text-xs font-mono font-bold text-indigo-700 bg-indigo-50 border border-indigo-100 px-3 py-1 rounded-xl shadow-sm">BOOKS COMPLETED</span>
                     </div>
 
-                    <!-- Book Catalog Rows -->
-                    <div class="space-y-4">
-                        <div class="flex items-start gap-4 bg-white border border-slate-200 rounded-2xl p-5 shadow-sm transition hover:shadow-md">
-                            <div class="w-12 h-16 bg-slate-100 border border-slate-200 rounded-md flex-shrink-0 flex items-center justify-center text-sm">📚</div>
-                            <div class="flex-grow">
-                                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
-                                    <h4 class="font-bold text-slate-900 text-base leading-tight">TBD Book Title 1</h4>
-                                    <span class="rounded bg-slate-100 border border-slate-200 px-2 py-0.5 text-[10px] font-mono font-bold text-slate-600 self-start sm:self-center">Genre Blueprint</span>
-                                </div>
-                                <p class="text-xs text-slate-500 font-medium mt-0.5">by TBD Author 1</p>
-                                <p class="text-xs text-slate-600 mt-2 leading-relaxed">Review placeholder. This canvas is structured to log notes, analytical breakdowns, or philosophical takeaways from your active reading list.</p>
-                            </div>
-                        </div>
+                    <!-- Clean Scrollable Shelf Box with Always-Visible Tracking Indicators -->
+                    <div id="library-shelf-container" class="custom-scrollbar space-y-4 max-h-[600px] overflow-y-scroll pr-3 border border-slate-200 bg-white p-4 rounded-2xl shadow-inner">
+                        <!-- Dynamic box loops stream in here perfectly -->
                     </div>
                 </section>
 
-                <!-- MODULE 2: Expedition Logs & Future Blueprints -->
+                <!-- MODULE 2: Expedition & Route Logs -->
                 <section class="space-y-6 border-t border-slate-200 pt-10">
                     <div>
                         <h2 class="text-2xl font-bold tracking-tight text-slate-900">Expedition & Route Logs</h2>
-                        <p class="text-xs text-slate-500 mt-0.5">Documenting global journeys, backcountry tracking, and custom travel blueprints.</p>
+                        <p class="text-xs text-slate-500 mt-0.5">Documenting completed journeys and custom travel blueprints.</p>
                     </div>
 
                     <div class="grid gap-6 sm:grid-cols-2">
-                        <!-- Location 1: Iceland -->
-                        <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+                        <!-- Active Journey: Ireland -->
+                        <div class="sm:col-span-2 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
                             <div class="flex items-center justify-between mb-3">
                                 <span class="text-xs font-mono font-bold text-emerald-600 bg-emerald-50 border border-emerald-100 px-2 py-0.5 rounded-md">PASSPORT STAMPED</span>
-                                <span class="text-xl">🇮🇸</span>
+                                <span class="text-xl">🇮🇪</span>
                             </div>
-                            <h4 class="font-bold text-slate-900 text-base">Iceland Route Circuit</h4>
-                            <p class="text-xs text-slate-500 mt-0.5">Ring Road, Waterfalls, & Volcanic Geomorphology</p>
+                            <h4 class="font-bold text-slate-900 text-base">Ireland Study Abroad</h4>
+                            <p class="text-xs text-slate-500 mt-0.5">Month-Long Academic & Cultural Immersion</p>
                             <p class="text-xs text-slate-600 mt-3 leading-relaxed">
-                                Navigated rugged black sand terrains, glacial valleys, and active geothermal rifts during a full cross-country loop trek.
+                                Spent a full month exploring historic cities, coastlines, and local landscapes while balancing educational tracks and deep cultural deep-dives.
                             </p>
                         </div>
 
-                        <!-- Location 2: Australia -->
-                        <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-                            <div class="flex items-center justify-between mb-3">
-                                <span class="text-xs font-mono font-bold text-emerald-600 bg-emerald-50 border border-emerald-100 px-2 py-0.5 rounded-md">PASSPORT STAMPED</span>
-                                <span class="text-xl">🇦🇺</span>
-                            </div>
-                            <h4 class="font-bold text-slate-900 text-base">Australia Coastline Track</h4>
-                            <p class="text-xs text-slate-500 mt-0.5">Maritime Systems & Ecological Circuits</p>
-                            <p class="text-xs text-slate-600 mt-3 leading-relaxed">
-                                Explored vast coastal loops, sub-tropical biomes, and southern hemisphere harbor navigation tracks.
-                            </p>
-                        </div>
-
-                        <!-- Dream Destination Itineraries (#goals) -->
+                        <!-- Bucket List Header -->
                         <div class="sm:col-span-2 rounded-2xl border border-dashed border-slate-200 bg-slate-50/50 p-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                             <div>
                                 <h4 class="font-bold text-slate-800 text-base flex items-center gap-2">
-                                    <span>🗺️</span> Custom Itinerary Vault: #goals
+                                    <span>🗺️</span> Custom Itinerary Vault: #Goals
                                 </h4>
                                 <p class="text-xs text-slate-500 mt-1 max-w-xl">
-                                    Building highly detailed logistical routing sheets and travel spreadsheets for upcoming dream destinations. Staging master itineraries to execute down the road.
+                                    Building detailed routes and organizing travel itineraries for upcoming dream destinations.
                                 </p>
                             </div>
                             <span class="rounded bg-amber-50 border border-amber-200 px-2.5 py-1 text-xs font-mono font-bold text-amber-700 whitespace-nowrap">Future Bucket List Blueprint</span>
                         </div>
-                    </div>
-                </section>
 
-                <!-- MODULE 3: The Culinary Workshop -->
-                <section class="space-y-6 border-t border-slate-200 pt-10">
-                    <div>
-                        <h2 class="text-2xl font-bold tracking-tight text-slate-900">The Culinary Workshop</h2>
-                        <p class="text-xs text-slate-500 mt-0.5">A curated logbook of heavily tested recipes, baker's percentages, and kitchen frameworks.</p>
-                    </div>
-
-                    <div class="grid gap-6 sm:grid-cols-2">
-                        <!-- Recipe Slot 1 -->
-                        <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm hover:shadow-md transition">
-                            <div class="flex justify-between items-start mb-3">
-                                <h4 class="font-bold text-slate-900 text-base">Artisanal Sourdough</h4>
-                                <span class="text-xs font-mono font-bold text-amber-700 bg-amber-50 border border-amber-100 px-2 py-0.5 rounded">Wild Fermentation</span>
+                        <!-- Greyed Out: Iceland Blueprint -->
+                        <div class="rounded-2xl border border-slate-200 bg-slate-50/70 p-5 opacity-75 shadow-inner">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-xs font-mono font-bold text-slate-500 bg-slate-100 border border-slate-200 px-2 py-0.5 rounded-md">ITINERARY BUILT</span>
+                                <span class="text-xl grayscale">🇮🇸</span>
                             </div>
-                            <p class="text-xs text-slate-600 leading-relaxed">
-                                Log for tracking hydration ratios, ambient proofing schedules, and precise baker's percentages to achieve optimal open crumb architecture.
+                            <h4 class="font-bold text-slate-700 text-base">Iceland Route Blueprint</h4>
+                            <p class="text-xs text-slate-400 mt-0.5">Ring Road, Waterfalls, & Volcanic Geomorphology</p>
+                            <p class="text-xs text-slate-500 mt-3 leading-relaxed">
+                                Detailed timeline for a full cross-country loop trek navigating black sand terrains, glacial valleys, and active geothermal rifts.
                             </p>
                         </div>
 
-                        <!-- Recipe Slot 2 -->
-                        <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm hover:shadow-md transition">
-                            <div class="flex justify-between items-start mb-3">
-                                <h4 class="font-bold text-slate-900 text-base">TBD Savory Main</h4>
-                                <span class="text-xs font-mono font-bold text-indigo-700 bg-indigo-50 border border-indigo-100 px-2 py-0.5 rounded">Italian / Scratch</span>
+                        <!-- Greyed Out: Australia Blueprint -->
+                        <div class="rounded-2xl border border-slate-200 bg-slate-50/70 p-5 opacity-75 shadow-inner">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-xs font-mono font-bold text-slate-500 bg-slate-100 border border-slate-200 px-2 py-0.5 rounded-md">ITINERARY BUILT</span>
+                                <span class="text-xl grayscale">🇦🇺</span>
                             </div>
-                            <p class="text-xs text-slate-600 leading-relaxed">
-                                Recipe notes blueprint. Ideal for documenting scratch-made emulsified sauces, custom flavor extractions, and high-heat techniques.
+                            <h4 class="font-bold text-slate-700 text-base">Australia Track Blueprint</h4>
+                            <p class="text-xs text-slate-400 mt-0.5">Maritime & Big City Culture</p>
+                            <p class="text-xs text-slate-500 mt-3 leading-relaxed">
+                                Custom travel itinerary complete for coastal loops, tropical biomes, and southern hemisphere harbor living.
                             </p>
                         </div>
                     </div>
                 </section>
-            </div>
+
+                <!-- MODULE 3: The Culinary Workshop (Now Dynamic and Self-Contained!) -->
+                    <section class="space-y-6 border-t border-slate-200 pt-10">
+                        <div>
+                            <h2 class="text-2xl font-bold tracking-tight text-slate-900">The Culinary Workshop, La Cuisine, La Cocina!</h2>
+                            <p class="text-xs text-slate-500 mt-0.5">A curated logbook of phenomenal recipes!</p>
+                        </div>
+
+                        <!-- Target Container Injection Point for Recipes -->
+                        <div id="recipe-workshop-container" class="grid gap-6 sm:grid-cols-2"></div>
+                    </section>
+                </div>
+
 
             <!-- SIDEBAR RIGHT COLUMN: Quantitative Skills (1 Span Wide) -->
             <div class="space-y-8 lg:col-span-1">
@@ -150,8 +151,9 @@
                 <!-- Box A: Language Scores -->
                 <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
                     <div class="flex items-center gap-2 text-indigo-600 mb-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9s2.015-9 4.5-9m0 0a9.015 9.015 0 018.716 2.253M12 3a9.015 9.015 0 00-8.716 2.253" />
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-slate-500">
+                            <circle cx="12" cy="12" r="10" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
                         </svg>
                         <h2 class="text-xs font-mono font-bold uppercase tracking-wider text-slate-500">Linguistics</h2>
                     </div>
@@ -164,7 +166,7 @@
                         </div>
                         <div class="flex items-center justify-between border-b border-slate-50 pb-2.5">
                             <span class="text-sm font-medium text-slate-700">Spanish</span>
-                            <span class="rounded bg-indigo-50 border border-indigo-100 px-2 py-0.5 text-xs font-mono font-bold text-indigo-700">110 CEFR Score</span>
+                            <span class="rounded bg-indigo-50 border border-indigo-100 px-2 py-0.5 text-xs font-mono font-bold text-indigo-700">111 CEFR Score</span>
                         </div>
                         <div class="flex items-center justify-between">
                             <span class="text-sm font-medium text-slate-700">French</span>
@@ -173,7 +175,7 @@
                     </div>
                 </div>
 
-                <!-- Box B: Studio Arts (Minimalist block for oil paintings) -->
+                <!-- Box B: Studio Arts -->
                 <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
                     <div class="flex items-center gap-2 text-indigo-600 mb-3">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
@@ -181,9 +183,9 @@
                         </svg>
                         <h2 class="text-xs font-mono font-bold uppercase tracking-wider text-slate-500">Fine Art</h2>
                     </div>
-                    <h3 class="text-lg font-bold text-slate-900">Oil on Canvas Log</h3>
+                    <h3 class="text-lg font-bold text-slate-900">Acrylic on Canvas</h3>
                     <p class="mt-2 text-xs leading-relaxed text-slate-600">
-                        Maintaining a steady baseline production rate of approximately **6 custom oil installations per year**, experimenting with lighting models and stretchers. 
+                        Producing roughly 6 acrylic paintings per year! 
                     </p>
                     <div class="mt-4 pt-3 border-t border-slate-100">
                         <span class="inline-flex items-center gap-1 text-[11px] font-semibold text-slate-400 font-mono">
@@ -200,6 +202,96 @@
     <footer class="border-t border-slate-200 bg-white py-8 text-center text-xs text-slate-400 w-full">
         <p>&copy; 2026 Aubrey Kennedy. Powered by Cloudflare Pages.</p>
     </footer>
+
+    <!-- CENTRALIZED DATABASE & AUTOMATED LIBRARY JAVASCRIPT RENDERING ENGINE -->
+    <script>
+    const readingList = [
+        { title: "The Sexual Politics of Meat", subtitle: "25th Anniversary Edition: A Feminist-Vegetarian Critical Theory", author: "Carol J. Adams", genre: "Critical Theory" },
+        { title: "Blind Spots", subtitle: "When Medicine Gets It Wrong, and What It Means for Our Health", author: "Marty Makary MD", genre: "Public Health" },
+        { title: "The Perfect Predator", subtitle: "A Scientist's Race to Save Her Husband from a Deadly Superbug: A Memoir", author: "Steffanie Strathdee, Thomas Patterson, Teresa Barker", genre: "Microbiology & Memoir" },
+        { title: "Adventures in the Louvre", subtitle: "How to Fall in Love with the World's Greatest Museum", author: "Elaine Sciolino", genre: "Art History" },
+        { title: "The Subtle Art of Not Giving a F*ck", subtitle: "A Counterintuitive Approach to Living a Good Life", author: "Mark Manson", genre: "Behavioral Philosophy" },
+        { title: "The Invention of Air", subtitle: "A Story of Science, Faith, Revolution, and the Birth of America", author: "Steven Johnson", genre: "History of Science" },
+        { title: "The Fabric of Civilization", subtitle: "How Textiles Made the World", author: "Virginia I. Postrel", genre: "Economic History" },
+        { title: "How to Kill a Witch", subtitle: "The Patriarchy's Guide to Silencing Women", author: "Zoe Venditozzi, Claire Mitchell", genre: "Sociology" },
+        { title: "Original Sins", subtitle: "The (Mis)education of Black and Native Children and the Construction of American Racism", author: "Eve L. Ewing", genre: "Social Policy & History" },
+        { title: "The Unappreciated Power of Naps", subtitle: "Scientific Insights Into Sleep Optimization & Circadian Cycles", author: "Jade Wu", genre: "Neuroscience" },
+        { title: "In Open Contempt", subtitle: "Confronting White Supremacy in Art and Public Space", author: "Irvin Weathersby Jr.", genre: "Art Criticism" },
+        { title: "Epigenetics", subtitle: "How Environment Changes Your Biology", author: "Charlotte Mykura", genre: "Genetics" },
+        { title: "What Do You Care What Other People Think?", subtitle: "Further Adventures of a Curious Character", author: "Richard P. Feynman, Ralph Leighton", genre: "Biographical Physics" },
+        { title: "Surely You're Joking, Mr. Feynman!", subtitle: "Adventures of a Curious Character", author: "Richard P. Feynman", genre: "Biographical Physics" },
+        { title: "Everything Is Tuberculosis", subtitle: "The History and Persistence of Our Deadliest Infection", author: "John Green", genre: "Epidemiology" },
+        { title: "Higgs", subtitle: "The Invention and Discovery of the 'God Particle'", author: "Jim Baggott, Steven Weinberg (Foreword)", genre: "Theoretical Physics" },
+        { title: "What the Dead Know", subtitle: "Learning About Life as a New York City Death Investigator", author: "Barbara Butcher", genre: "Forensics & Memoir" },
+        { title: "Confessions of a Cartel Hit Man", author: "Martin Corona, Tony Rafael", subtitle: "A Memoir of Real-World Geopolitical Narcotic Structures", genre: "True Crime Memoir" },
+        { title: "Poverty, by America", author: "Matthew Desmond", subtitle: "Investigating the Systems Sustaining Inequality", genre: "Economic Sociology" },
+        { title: "Missing Microbes", subtitle: "How the Overuse of Antibiotics Is Fueling Our Modern Plagues", author: "Martin J. Blaser", genre: "Microbiology" },
+        { title: "How the Universe Got Its Spots", subtitle: "Diary of a Finite Time in a Finite Space", author: "Janna Levin", genre: "Astrophysics & Cosmology" },
+        { title: "The Blind Watchmaker", subtitle: "Why the Evidence of Evolution Reveals a Universe Without Design", author: "Richard Dawkins", genre: "Evolutionary Biology" }
+    ];
+
+    const libraryContainer = document.getElementById('library-shelf-container');
+    
+    libraryContainer.innerHTML = readingList.map(book => `
+        <div class="flex items-start gap-4 bg-white border border-slate-200 rounded-2xl p-4 shadow-sm hover:border-slate-300 transition duration-150">
+            <div class="w-10 h-14 bg-indigo-50 border border-indigo-100 rounded-lg flex-shrink-0 flex items-center justify-center text-lg shadow-inner">📖</div>
+            <div class="flex-grow">
+                <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-1.5">
+                    <div>
+                        <h4 class="font-bold text-slate-900 text-sm sm:text-base leading-tight">${book.title}</h4>
+                        ${book.subtitle ? `<p class="text-slate-500 text-xs font-medium mt-0.5 leading-snug">${book.subtitle}</p>` : ''}
+                    </div>
+                    <span class="rounded bg-indigo-50 border border-indigo-100 px-2 py-0.5 text-[9px] sm:text-[10px] font-mono font-bold text-indigo-700 whitespace-nowrap self-start sm:self-auto">${book.genre}</span>
+                </div>
+                <p class="text-[11px] sm:text-xs text-slate-400 font-semibold uppercase tracking-wider mt-2">By: ${book.author}</p>
+            </div>
+        </div>
+    `).join('');
+
+    const culinaryRecipes = [
+        {
+            title: "Million Dollar Spaghetti Squash",
+            sourceName: "Everyday Dishes Link",
+            url: "https://everydaydishes.com/simple-food-recipes/dinner-recipes/million-dollar-spaghetti-squash-pasta/",
+            tag: "Low Carb & Savory",
+            summary: "An pasta replacement combining slow-roasted spaghetti squash strands, a rich cheese blend, and ground beef.",
+            details: "<strong>Ingredients:</strong> 1 Spaghetti Squash (roasted & stranded) &bull; 1 lb Lean Ground Beef &bull; 24 oz marinara sauce &bull; 1 cup ricotta cheese &bull; 1 1/2 cups shredded mozzarella cheese &bull; 1/4 cup grated Parmesan cheese &bull; 1 tsp Italian seasoning<br><br><strong>Method:</strong> Roast squash at 400°F until stringy. Bake squash at 400°F for 50-60 minutes, cook the meat marinara, and combine the cheese blend! Once the squash is tender, transfer the meat and cheese mix into the squash and in the oven and bake for another 10-20 minutes or until the cheese is melted and browned in some spots!"
+        },
+        {
+            title: "Cinnamon Roll Apple Cobbler",
+            sourceName: "Clean Kitchen Method",
+            url: null,
+            tag: "Sweet & Cinnamon-y",
+            summary: "A sweet comfort dessert that uses only two-ingredients to create an ultra-gooey cinnamon roll apple cobbler!",
+            details: "<strong>Ingredients:</strong> 1-2 Cans Apple Pie Filling &bull; 1-2 Cans Pre-made Cinnamon Roll Dough (with icing package included).<br><br><strong>Method:</strong> Cut unbaked cinnamon roll rounds into quarters and mix them evenly with your apple-pie filling across the pan. Bake at 375°F for 25-30 minutes until dough rises and is golden brown. Glaze with white icing while steaming hot!"
+        }
+    ];
+
+    const recipeContainer = document.getElementById('recipe-workshop-container');
+    recipeContainer.innerHTML = culinaryRecipes.map(recipe => {
+        // Handle header link conditionally before entering the template literal
+        let linkElement = `<span class="text-[10px] font-mono font-semibold text-slate-400 uppercase tracking-wider">TikTok Classic</span>`;
+        if (recipe.url) {
+            linkElement = `<a href="${recipe.url}" target="_blank" class="text-xs font-semibold text-indigo-600 hover:text-indigo-800 flex items-center gap-0.5">${recipe.sourceName} &rarr;</a>`;
+        }
+
+        return `
+            <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="rounded-full border border-slate-200 bg-slate-50 px-2.5 py-0.5 text-[10px] font-mono font-bold text-slate-500 uppercase tracking-wider">${recipe.tag}</span>
+                        ${linkElement}
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 leading-snug">${recipe.title}</h3>
+                    <p class="mt-2.5 text-xs text-slate-500 leading-relaxed font-medium">${recipe.summary}</p>
+                    <div class="mt-4 bg-slate-50 border border-slate-100 rounded-xl p-4 text-xs text-slate-600 leading-relaxed max-h-[180px] overflow-y-auto custom-scrollbar">
+                        ${recipe.details}
+                    </div>
+                </div>
+            </div>
+        `;
+    }).join('');
+    </script>
 
 </body>
 </html>
