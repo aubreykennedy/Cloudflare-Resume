@@ -3,6 +3,13 @@
 window.FALLBACK_DATA = {
  "books": [
   {
+   "title": "QED",
+   "subtitle": "The Strange Theory of Light and Matter",
+   "author": "Richard P. Feynman",
+   "genre": "Quantum Electrodynamics",
+   "status": "finished"
+  },
+  {
    "title": "Alex & Me",
    "subtitle": "How a Scientist and a Parrot Discovered a Hidden World of Animal Intelligence, and Formed a Deep Bond in the Process",
    "author": "Irene M. Pepperberg",

@@ -67,6 +67,7 @@ INSERT INTO books (title, subtitle, author, genre, status, sort_order) SELECT 'A
 INSERT INTO books (title, subtitle, author, genre, status, sort_order) SELECT 'When Crack Was King', 'A People''s History of a Misunderstood Era', 'Donovan X. Ramsey', 'Social History', 'finished', 25 WHERE NOT EXISTS (SELECT 1 FROM books WHERE title = 'When Crack Was King');
 INSERT INTO books (title, subtitle, author, genre, status, sort_order) SELECT 'Midnight in Chernobyl', 'The Untold Story of the World''s Greatest Nuclear Disaster', 'Adam Higginbotham', 'History of Science', 'finished', 24 WHERE NOT EXISTS (SELECT 1 FROM books WHERE title = 'Midnight in Chernobyl');
 INSERT INTO books (title, subtitle, author, genre, status, sort_order) SELECT 'The Neuroscientist Who Lost Her Mind', 'My Tale of Madness and Recovery', 'Barbara K. Lipska, Elaine McArdle', 'Neuroscience & Memoir', 'finished', 23 WHERE NOT EXISTS (SELECT 1 FROM books WHERE title = 'The Neuroscientist Who Lost Her Mind');
+INSERT INTO books (title, subtitle, author, genre, status, sort_order) SELECT 'QED', 'The Strange Theory of Light and Matter', 'Richard P. Feynman', 'Quantum Electrodynamics', 'finished', 27 WHERE NOT EXISTS (SELECT 1 FROM books WHERE title = 'QED');
 
 -- ---------------- seed: the paintings already in the repo ----------------
 INSERT INTO artworks (title, medium, year, image_key, sort_order) SELECT 'Butterfly', 'makeup', '', 'images/makeup-butterfly.JPG', 9 WHERE NOT EXISTS (SELECT 1 FROM artworks WHERE image_key = 'images/makeup-butterfly.JPG');
