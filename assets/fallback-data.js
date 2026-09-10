@@ -3,6 +3,34 @@
 window.FALLBACK_DATA = {
  "books": [
   {
+   "title": "Alex & Me",
+   "subtitle": "How a Scientist and a Parrot Discovered a Hidden World of Animal Intelligence, and Formed a Deep Bond in the Process",
+   "author": "Irene M. Pepperberg",
+   "genre": "Animal Cognition & Memoir",
+   "status": "finished"
+  },
+  {
+   "title": "When Crack Was King",
+   "subtitle": "A People's History of a Misunderstood Era",
+   "author": "Donovan X. Ramsey",
+   "genre": "Social History",
+   "status": "finished"
+  },
+  {
+   "title": "Midnight in Chernobyl",
+   "subtitle": "The Untold Story of the World's Greatest Nuclear Disaster",
+   "author": "Adam Higginbotham",
+   "genre": "History of Science",
+   "status": "finished"
+  },
+  {
+   "title": "The Neuroscientist Who Lost Her Mind",
+   "subtitle": "My Tale of Madness and Recovery",
+   "author": "Barbara K. Lipska, Elaine McArdle",
+   "genre": "Neuroscience & Memoir",
+   "status": "finished"
+  },
+  {
    "title": "The Sexual Politics of Meat",
    "subtitle": "25th Anniversary Edition: A Feminist-Vegetarian Critical Theory",
    "author": "Carol J. Adams",
@@ -212,57 +240,56 @@ window.FALLBACK_DATA = {
    "year": "",
    "image_key": "images/makeup-green-burgandy-2.jpeg"
   }
- ]
-,
+ ],
  "projects": [
- {
-  "name": "Infrared (IR) Turret",
-  "principle": "Infrared sensing, signal filtering",
-  "description": "Infrared receivers decode a modulated signal and drive the turret motors.",
-  "status": "done",
-  "image_key": null
- },
- {
-  "name": "Domino Robot",
-  "principle": "Kinematics, linkages",
-  "description": "A cam mechanism turns motor rotation into a load-and-place cycle.",
-  "status": "done",
-  "image_key": null
- },
- {
-  "name": "Label Maker",
-  "principle": "Indexing, escapements",
-  "description": "A dial and feed wheel advance the tape and align the stamp.",
-  "status": "done",
-  "image_key": null
- },
- {
-  "name": "Sand Garden",
-  "principle": "Magnetism, planetary gears",
-  "description": "A magnet under the tray, driven by planetary gears, draws patterns in sand.",
-  "status": "done",
-  "image_key": null
- },
- {
-  "name": "Laser Tag",
-  "principle": "Optics, light sensors",
-  "description": "A lens collimates the beam; light-dependent resistors register the pulses.",
-  "status": "done",
-  "image_key": null
- },
- {
-  "name": "Balance Bot",
-  "principle": "Center of mass, inverted pendulum",
-  "description": "An inverted pendulum. How mass distribution affects stability and recovery.",
-  "status": "done",
-  "image_key": null
- },
- {
-  "name": "Card Dealing Robot",
-  "principle": "Friction, feed rollers",
-  "description": "Next build. Feed rollers that separate one card at a time from a deck.",
-  "status": "next",
-  "image_key": null
- }
-]
+  {
+   "name": "Infrared (IR) Turret",
+   "principle": "Infrared sensing, signal filtering",
+   "description": "Infrared receivers decode a modulated signal and drive the turret motors.",
+   "status": "done",
+   "image_key": null
+  },
+  {
+   "name": "Domino Robot",
+   "principle": "Kinematics, linkages",
+   "description": "A cam mechanism turns motor rotation into a load-and-place cycle.",
+   "status": "done",
+   "image_key": null
+  },
+  {
+   "name": "Label Maker",
+   "principle": "Indexing, escapements",
+   "description": "A dial and feed wheel advance the tape and align the stamp.",
+   "status": "done",
+   "image_key": null
+  },
+  {
+   "name": "Sand Garden",
+   "principle": "Magnetism, planetary gears",
+   "description": "A magnet under the tray, driven by planetary gears, draws patterns in sand.",
+   "status": "done",
+   "image_key": null
+  },
+  {
+   "name": "Laser Tag",
+   "principle": "Optics, light sensors",
+   "description": "A lens collimates the beam; light-dependent resistors register the pulses.",
+   "status": "done",
+   "image_key": null
+  },
+  {
+   "name": "Balance Bot",
+   "principle": "Center of mass, inverted pendulum",
+   "description": "An inverted pendulum. How mass distribution affects stability and recovery.",
+   "status": "done",
+   "image_key": null
+  },
+  {
+   "name": "Card Dealing Robot",
+   "principle": "Friction, feed rollers",
+   "description": "Next build. Feed rollers that separate one card at a time from a deck.",
+   "status": "next",
+   "image_key": null
+  }
+ ]
 };
