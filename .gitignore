@@ -1,6 +1,15 @@
+# macOS
 .DS_Store
+
+# dependencies
 node_modules/
-.wrangler/
-.dev.vars
+
+# wrangler
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example
+
+# local editor / tooling state
 .claude/
-wrangler.toml

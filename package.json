@@ -2,10 +2,10 @@
   "name": "aubreykennedy-site",
   "private": true,
   "scripts": {
-    "dev": "wrangler pages dev . --port 8788",
+    "dev": "wrangler dev --port 8788",
     "db:local": "wrangler d1 execute aubreykennedy-site --local --file=schema.sql",
     "db:remote": "wrangler d1 execute aubreykennedy-site --remote --file=schema.sql",
-    "deploy": "wrangler pages deploy ."
+    "deploy": "wrangler deploy"
   },
   "devDependencies": {
     "wrangler": "^4"

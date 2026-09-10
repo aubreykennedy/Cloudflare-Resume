@@ -1,0 +1,29 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "cloudflare-resume",
+  "main": "worker.js",
+  "compatibility_date": "2026-09-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "observability": {
+    "enabled": true
+  },
+
+  // ---- Turning on the admin panel -----------------------------------------
+  // Until these two lines are uncommented the site still works. The API
+  // answers 503 and the pages fall back to the lists in
+  // assets/fallback-data.js, so nothing looks broken.
+  //
+  // Run these once, then paste the database id the first one prints:
+  //   npx wrangler d1 create aubreykennedy-site
+  //   npx wrangler r2 bucket create aubreykennedy-art
+  //
+  // "d1_databases": [{ "binding": "DB", "database_name": "aubreykennedy-site", "database_id": "PASTE_DATABASE_ID_HERE" }],
+  // "r2_buckets": [{ "binding": "ART", "bucket_name": "aubreykennedy-art" }],
+
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS",
+    // serve /personal.html as-is instead of redirecting it to /personal
+    "html_handling": "none"
+  }
+}
