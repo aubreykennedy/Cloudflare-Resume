@@ -1,269 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Professional Timeline | Aubrey Kennedy</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Professional | Aubrey Kennedy</title>
+  <meta name="description" content="Aubrey Kennedy: work history, education, and engineering projects.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/site.css">
+  <style>
+    .awards { margin: 8px 0 0; padding: 0; list-style: none; font-size: 0.92rem; color: var(--ink-2); }
+    .project { grid-template-columns: 130px 1fr auto; }
+    .project .name { display: flex; gap: 12px; align-items: baseline; flex-wrap: wrap; }
+    .project .name h3 { font-size: 1.15rem; }
+    .project .principle { color: var(--muted); font-size: 0.95rem; }
+    .project p.body { margin-top: 4px; }
+    .project .photo { width: 160px; height: 120px; object-fit: cover; border: 1px solid var(--rule-strong); background: #fff; cursor: zoom-in; }
+    @media (max-width: 600px) { .project { grid-template-columns: 1fr; } .project .photo { width: 100%; height: auto; aspect-ratio: 4 / 3; } }
+    .lightbox { position: fixed; inset: 0; z-index: 100; background: rgba(18, 24, 43, 0.93); display: none; align-items: center; justify-content: center; padding: 24px; cursor: zoom-out; }
+    .lightbox.open { display: flex; }
+    .lightbox img { max-width: min(96vw, 1200px); max-height: 85vh; object-fit: contain; }
+  </style>
 </head>
-<body class="bg-slate-50 font-sans text-slate-800 antialiased min-h-screen flex flex-col justify-between">
+<body>
 
-    <!-- Sticky Header Navigation -->
-    <header class="sticky top-0 z-50 border-b border-slate-200 bg-white/80 backdrop-blur-md">
-        <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-            <a href="index.html" class="text-xl font-bold tracking-tight text-slate-900">aubrey<span class="text-indigo-600">kennedy</span>.com</a>
-            <nav class="flex gap-6 font-medium text-slate-600">
-                <a href="index.html#about" class="hover:text-indigo-600 transition">About</a>
-                <a href="professional.html" class="text-indigo-600 font-semibold">Professional</a>
-                <a href="personal.html" class="hover:text-indigo-600 transition">Personal</a>
-                <a href="contact.html" class="hover:text-indigo-600 transition">Contact</a>
-            </nav>
+  <header class="nav">
+    <div class="wrap-wide">
+      <a class="name" href="index.html">Portfolio</a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links">Menu</button>
+      <nav class="nav-links" id="nav-links">
+        <a href="index.html">Home</a>
+        <a href="professional.html" aria-current="page">Professional</a>
+        <a href="personal.html">Personal</a>
+        <a href="physics.html">Physics</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <section class="page-head">
+        <div class="row">
+          <div>
+            <h1>Professional</h1>
+            <p>Work history, education, and engineering projects.</p>
+          </div>
+          <a class="btn btn-line" href="Aubrey_Kennedy_Resume_2026.pdf" download="Aubrey_Kennedy_Resume.pdf">Résumé (PDF)</a>
         </div>
-    </header>
+      </section>
 
-    <!-- Main Experience Content -->
-    <main class="mx-auto max-w-6xl px-6 py-16 w-full flex-grow">
-        
-        <div class="max-w-3xl">
-            <!-- Header & Resume Download Section -->
-            <section class="w-full mb-12 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 border-b border-slate-200 pb-10">
-                <div>
-                    <h1 class="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">Professional History</h1>
-                    <p class="mt-2 text-slate-600">A timeline of industry systems engineering and technical roles.</p>
-                </div>
-                <div>
-                    <a href="Aubrey_Kennedy_Resume_2026.pdf" download="Aubrey_Kennedy_Resume.pdf" class="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-5 py-3 text-sm font-semibold text-white hover:bg-indigo-600 shadow-sm transition duration-200 whitespace-nowrap">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
-                        </svg>
-                        Download Resume (PDF)
-                    </a>
-                </div>
-            </section>
-
-            <!-- Chronological Timeline Section -->
-            <section class="w-full mb-16">
-                <div class="relative border-l-2 border-slate-200 ml-3 pl-8 space-y-12">
-                    
-                    <!-- Timeline Event 1: Systems Engineering -->
-                    <div class="relative">
-                        <div class="absolute -left-[41px] top-1.5 flex h-6 w-6 items-center justify-center rounded-full bg-indigo-50 border-2 border-indigo-600">
-                            <div class="h-2 w-2 rounded-full bg-indigo-600"></div>
-                        </div>
-                        <div>
-                            <span class="text-xs font-mono font-bold text-indigo-600 bg-indigo-50 border border-indigo-100 px-2.5 py-1 rounded-md">2024 — PRESENT</span>
-                            <h3 class="text-xl font-bold text-slate-900 mt-3">Systems Engineer</h3>
-                            <p class="text-sm font-medium text-slate-500">Northrop Grumman, Defense & Aerospace Industry</p>
-                            <p class="mt-3 text-sm leading-relaxed text-slate-600">
-                                Applied system safety techniques and identified, reduced, and eliminated hazards and their associated risks when the hazard(s) could not be eliminated for the Sentinel Ground Based Strategic Deterrent (GBSD) program. These techniques included performing preliminary hazard analyses (PHA), health hazard analyses (HHA), operating and support hazard analyses (O&SHA), system hazard analyses (SHA), subsystem hazard analyses (SSHA), functional hazard analyses (FHA), etc. Ensured technical and required safety documentation, including hazard analyses, are in accordance with requirements from Department of Defense Standard Practice for System Safety (MIL-STD-882E), Air Force Space Command Manual (AFSPCMAN) 91-710 Volume 1-7, Range Command Council (RCC) 319-19 and 324-11, Title 29 Code of Federal Regulations (CFR) Standards from the Occupational Safety and Health Administration (OSHA), etc. I have been recognized with two Northrop Grumman BRAVO awards: one for contributions to System Safety Engineering and another for my work on Electro-Explosive Devices (EED)/Hazards of Electromagnetic Radiation to Ordnance (HERO).
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Timeline Event 2: Hardware Repairs -->
-                    <div class="relative">
-                        <div class="absolute -left-[41px] top-1.5 flex h-6 w-6 items-center justify-center rounded-full bg-white border-2 border-slate-300">
-                            <div class="h-2 w-2 rounded-full bg-slate-400"></div>
-                        </div>
-                        <div>
-                            <span class="text-xs font-mono font-medium text-slate-500 bg-slate-100 border border-slate-200 px-2.5 py-1 rounded-md">PRIOR EXPERIENCE</span>
-                            <h3 class="text-xl font-bold text-slate-900 mt-3">Lead Apple Hardware Technician</h3>
-                            <p class="text-sm font-medium text-slate-500">Expercom - Authorized Apple Service Provider, Technology</p>
-                            <p class="mt-3 text-sm leading-relaxed text-slate-600">
-                                Served as the lead technician for device repair and data recovery, holding Apple certifications across Mac, iOS, and service technologies. Diagnosed and resolved hardware and software issues on Apple devices, including complex data-loss scenarios. Specialized in data recovery by evaluating failing drives, restoring damaged or lost files, and coordinating with clean-room engineering teams for advanced cases. Functioned as the team’s data recovery lead or 'manager', training junior technicians, overseeing workflow, and guiding technical decisions within the store. Maintained clear and consistent communication with customers throughout the service process, ensuring transparency, accuracy, and high-quality support aligned with company standards.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <hr class="my-16 border-slate-200" />
-
-        <!-- Education Card Grid -->
-        <section id="education" class="scroll-mt-24">
-            <div class="mb-10">
-                <h2 class="text-2xl font-bold tracking-tight text-slate-900">Academic Foundation</h2>
-                <p class="mt-2 text-slate-600">Higher education history and core research fields.</p>
+      <section class="block" id="work">
+        <h2>Work history</h2>
+        <ul class="rows">
+          <li class="row2">
+            <div class="left">2024 – present</div>
+            <div>
+              <h3>Systems Engineer</h3>
+              <div class="org">Northrop Grumman</div>
+              <p class="body">System safety engineering on the Sentinel (GBSD) program. Hazard analyses: preliminary (PHA), subsystem (SSHA), system (SHA), functional (FHA), health (HHA), and operating and support (O&amp;SHA). Safety documentation to MIL-STD-882E, AFSPCMAN 91-710 Vol. 1–7, RCC 319-19 and 324-11, and 29 CFR (OSHA).</p>
+              <ul class="awards">
+                <li>BRAVO award: system safety engineering</li>
+                <li>BRAVO award: EED / HERO</li>
+              </ul>
             </div>
-
-            <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                <!-- Slot 1: Johns Hopkins Graduate School -->
-                <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:shadow-md flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="text-xs font-mono font-semibold tracking-wider text-slate-400">GRADUATE</span>
-                            <span class="rounded-full border border-indigo-200 bg-indigo-50 px-2.5 py-0.5 text-xs font-semibold text-indigo-700">In Progress</span>
-                        </div>
-                        <h3 class="text-lg font-bold text-slate-900">M.S. in Applied Physics</h3>
-                        <p class="text-xs font-semibold uppercase tracking-wider text-indigo-600 mt-1">Johns Hopkins University</p>
-                        <p class="mt-3 text-sm text-slate-600 leading-relaxed">
-                            Focusing on advancing my understanding of physics through materials science, oceanography, chaos theory, advanced particle physics, and theoretical physics.
-                        </p>
-                    </div>
-                    <div class="mt-4 flex flex-wrap gap-1.5 pt-2 border-t border-slate-50">
-                        <span class="rounded bg-slate-100 px-2 py-0.5 text-[11px] font-medium text-slate-600">Material Science</span>
-                        <span class="rounded bg-slate-100 px-2 py-0.5 text-[11px] font-medium text-slate-600">Quantum Systems</span>
-                    </div>
-                </div>
-
-                <!-- Slot 2: U of U Physics Degree -->
-                <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:shadow-md flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="text-xs font-mono font-semibold tracking-wider text-slate-400">UNDERGRADUATE</span>
-                            <span class="rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-0.5 text-xs font-semibold text-emerald-700">COMPLETE</span>
-                        </div>
-                        <h3 class="text-lg font-bold text-slate-900">B.S. in Physics</h3>
-                        <p class="text-xs font-semibold uppercase tracking-wider text-indigo-600 mt-1">University of Utah</p>
-                        <p class="mt-3 text-sm text-slate-600 leading-relaxed">
-                            Established foundational roots in deep mathematical computation, quantum mechanics, particle physics, and experimentation.
-                        </p>
-                    </div>
-                    <div class="mt-4 flex flex-wrap gap-1.5 pt-2 border-t border-slate-50">
-                        <span class="rounded bg-slate-100 px-2 py-0.5 text-[11px] font-medium text-slate-600">Quantum Mechanics</span>
-                        <span class="rounded bg-slate-100 px-2 py-0.5 text-[11px] font-medium text-slate-600">Thermodynamics</span>
-                    </div>
-                </div>
-
-                <!-- Slot 3: U of U Electrical Engineering Degree -->
-                <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:shadow-md flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="text-xs font-mono font-semibold tracking-wider text-slate-400">UNDERGRADUATE</span>
-                            <span class="rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-0.5 text-xs font-semibold text-emerald-700">COMPLETE</span>
-                        </div>
-                        <h3 class="text-lg font-bold text-slate-900">B.S. in Electrical Engineering</h3>
-                        <p class="text-xs font-semibold uppercase tracking-wider text-indigo-600 mt-1">University of Utah</p>
-                        <p class="mt-3 text-sm text-slate-600 leading-relaxed">
-                            Studied computer and electronics design, signal analysis, electromagnetics, and elementary circuitry.
-                        </p>
-                    </div>
-                    <div class="mt-4 flex flex-wrap gap-1.5 pt-2 border-t border-slate-50">
-                        <span class="rounded bg-slate-100 px-2 py-0.5 text-[11px] font-medium text-slate-600">Circuit Design</span>
-                        <span class="rounded bg-slate-100 px-2 py-0.5 text-[11px] font-medium text-slate-600">Electromagnetics</span>
-                    </div>
-                </div>
+          </li>
+          <li class="row2">
+            <div class="left">Earlier</div>
+            <div>
+              <h3>Lead Apple Hardware Technician</h3>
+              <div class="org">Expercom (Apple Authorized Service Provider)</div>
+              <p class="body">Lead technician for repair and data recovery on Apple devices, Apple certified for Mac and iOS. Evaluated failing drives, recovered files, and coordinated clean-room recoveries. Trained junior technicians and handled customer communication.</p>
             </div>
-        </section>
+          </li>
+        </ul>
+      </section>
 
-        <!-- Engineering Build Tracker Section (Relocated Here!) -->
-        <section id="projects" class="w-full border-t border-slate-200 pt-16 mt-16">
-            <div class="mb-10">
-                <h2 class="text-2xl font-bold tracking-tight text-slate-900">Engineering Projects</h2>
-                <p class="mt-2 text-slate-600">Showcasing hands-on optoelectronic and physical lab mechanics implementations.</p>
+      <section class="block" id="education">
+        <h2>Education</h2>
+        <ul class="rows">
+          <li class="row2">
+            <div class="left">In progress</div>
+            <div>
+              <h3>M.S. Applied Physics</h3>
+              <div class="org">Johns Hopkins University</div>
+              <p class="body">Coursework in materials science, oceanography, chaos theory, particle physics, and theoretical physics.</p>
             </div>
+          </li>
+          <li class="row2">
+            <div class="left">B.S.</div>
+            <div>
+              <h3>Physics</h3>
+              <div class="org">University of Utah</div>
+              <p class="body">Quantum mechanics, particle physics, mathematical methods, and lab work.</p>
+            </div>
+          </li>
+          <li class="row2">
+            <div class="left">B.S.</div>
+            <div>
+              <h3>Electrical Engineering</h3>
+              <div class="org">University of Utah</div>
+              <p class="body">Electronics and computer design, signal analysis, electromagnetics, and circuits.</p>
+            </div>
+          </li>
+        </ul>
+      </section>
 
-            <!-- Robot Grid Container -->
-            <div id="robot-grid-container" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"></div>
-        </section>
+      <section class="block" id="projects">
+        <h2>Engineering projects</h2>
+        <p class="lede">Kits from Mark Rober's CrunchLabs Build Box, built and taken apart to study the principle behind each one.</p>
+        <ol class="rows" id="builds"></ol>
+      </section>
+    </div>
+  </main>
 
-    </main>
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Project photo"><img id="lightbox-img" alt=""></div>
 
-    <footer class="border-t border-slate-200 bg-white py-8 text-center text-xs text-slate-400 w-full">
-        <p>&copy; 2026 Aubrey Kennedy. Powered by Cloudflare Pages.</p>
-    </footer>
+  <footer class="footer">
+    <div class="wrap-wide">
+      <span>&copy; 2026 Aubrey Kennedy</span>
+      <a href="contact.html">Contact</a>
+    </div>
+  </footer>
 
-    <!-- Script Rendering Logic Array Block -->
-    <script>
-    const robotBuilds = [
-        {
-            id: "01",
-            name: "Infrared (IR) Turret",
-            stemPrinciple: "Optoelectronics & Signal Filtering",
-            status: "complete",
-            description: "Analyzed how infrared sensor arrays detect and decode modulated frequency signals to command directional motorized targeting components.",
-            tags: ["IR Receivers", "Frequency Modulation", "Motor Drives"]
-        },
-        {
-            id: "02",
-            name: "Domino Robot",
-            stemPrinciple: "Kinematics & Linkage Synchronization",
-            status: "complete",
-            description: "Engineered a mechanical indexing mechanism that transforms rotational motor force into discrete, cyclical loading and placement actions.",
-            tags: ["Cam Profiles", "Rotational Translation", "Gearing"]
-        },
-        {
-            id: "03",
-            name: "Label Maker",
-            stemPrinciple: "Mechanical Indexing & Escapements",
-            status: "complete",
-            description: "Explored tactile dial interfaces and stepping feed wheels to precisely control lateral tape advancement and physical stamp alignment.",
-            tags: ["Escapements", "Frictional Feed", "Linear Tracking"]
-        },
-        {
-            id: "04",
-            name: "Sand Garden",
-            stemPrinciple: "Magnetism & Epicyclic Gearing",
-            status: "complete",
-            description: "Analyzed magnetic field coupling through structural barriers, utilizing planetary gear sets to smoothly trace intricate, geometric paths.",
-            tags: ["Magnetic Flux", "Planetary Gears", "Path Optimization"]
-        },
-        {
-            id: "05",
-            name: "Laser Tag",
-            stemPrinciple: "Collimation & Optoelectronic Triggers",
-            status: "complete",
-            description: "Studied light beam focusing using optical lenses, aligning light-dependent resistors to reliably register high-frequency source pulses.",
-            tags: ["Optical Collimation", "LDR Circuitry", "Pulse Validation"]
-        },
-        {
-            id: "06",
-            name: "Balance Bot",
-            stemPrinciple: "Center of Mass & Inverted Pendulums",
-            status: "complete",
-            description: "Analyzed rotational equilibrium, studying how modifying mass allocation alters system stability dynamics and mechanical recovery vectors.",
-            tags: ["Equilibrium Physics", "Mass Distribution", "Moment of Inertia"]
-        },
-        {
-            id: "07",
-            name: "Card Dealing Robot",
-            stemPrinciple: "Frictional Coefficients & Feed Rollers",
-            status: "queued",
-            description: "Upcoming deployment sprint. Will explore surface friction variance and normal forces required to cleanly separate individual layers.",
-            tags: ["Static Friction", "Normal Force", "Angular Feed"]
-        }
-    ];
+  <script src="assets/site.js"></script>
+  <script src="assets/fallback-data.js"></script>
+  <script>
+  (function () {
+    const esc = Site.esc;
+    const list = document.getElementById('builds');
+    function render(projects) {
+      list.innerHTML = projects.map((b, i) => `
+        <li class="row2 project">
+          <div class="left">${String(i + 1).padStart(2, '0')}${b.status === 'next' ? ' · next' : ''}</div>
+          <div>
+            <div class="name"><h3>${esc(b.name)}</h3>${b.principle ? `<span class="principle">${esc(b.principle)}</span>` : ''}</div>
+            ${b.description ? `<p class="body">${esc(b.description)}</p>` : ''}
+          </div>
+          ${b.image_key ? `<img class="photo" src="${esc(Site.imageUrl(b.image_key))}" alt="${esc(b.name)}" loading="lazy">` : ''}
+        </li>`).join('');
+    }
+    Site.getJSON('/api/projects').then(d => { if (!d.projects || !d.projects.length) throw new Error('empty'); render(d.projects); })
+      .catch(() => render(FALLBACK_DATA.projects));
 
-    const container = document.getElementById('robot-grid-container');
-    container.innerHTML = robotBuilds.map(robot => {
-        if (robot.status === 'complete') {
-            return `
-                <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:shadow-md flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="text-xs font-mono font-semibold tracking-wider text-slate-400">BUILD ${robot.id}</span>
-                            <span class="rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-0.5 text-xs font-semibold text-emerald-700">Build Complete</span>
-                        </div>
-                        <h3 class="text-lg font-bold text-slate-900">${robot.name}</h3>
-                        <p class="text-xs font-semibold uppercase tracking-wider text-indigo-600 mt-1">${robot.stemPrinciple}</p>
-                        <p class="mt-3 text-sm text-slate-600 leading-relaxed">${robot.description}</p>
-                    </div>
-                    <div class="mt-4 flex flex-wrap gap-1.5 pt-2">
-                        ${robot.tags.map(tag => `<span class="rounded bg-slate-100 px-2 py-0.5 text-[11px] font-medium text-slate-600">${tag}</span>`).join('')}
-                    </div>
-                </div>
-            `;
-        } else {
-            return `
-                <div class="rounded-2xl border border-dashed border-slate-200 bg-slate-50/50 p-6 opacity-80 flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="text-xs font-mono font-semibold tracking-wider text-slate-400">BUILD ${robot.id}</span>
-                            <span class="rounded-full border border-amber-200 bg-amber-50 px-2.5 py-0.5 text-xs font-semibold text-amber-700">In Queue</span>
-                        </div>
-                        <h3 class="text-lg font-bold text-slate-700">${robot.name}</h3>
-                        <p class="text-xs font-semibold uppercase tracking-wider text-slate-400 mt-1">${robot.stemPrinciple}</p>
-                        <p class="mt-3 text-sm italic text-slate-400 leading-relaxed">${robot.description}</p>
-                    </div>
-                    <div class="mt-4 flex flex-wrap gap-1.5 pt-2 opacity-50">
-                        ${robot.tags.map(tag => `<span class="rounded bg-slate-100 border border-slate-200 px-2 py-0.5 text-[11px] font-medium text-slate-400">${tag}</span>`).join('')}
-                    </div>
-                </div>
-            `;
-        }
-    }).join('');
-    </script>
-
+    const lb = document.getElementById('lightbox'), lbImg = document.getElementById('lightbox-img');
+    list.addEventListener('click', (e) => { const img = e.target.closest('.photo'); if (!img) return; lbImg.src = img.src; lbImg.alt = img.alt; lb.classList.add('open'); });
+    lb.addEventListener('click', () => lb.classList.remove('open'));
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') lb.classList.remove('open'); });
+  })();
+  </script>
 </body>
 </html>

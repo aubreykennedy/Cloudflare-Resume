@@ -1,83 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact | Aubrey Kennedy</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | Aubrey Kennedy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/site.css">
+  <style>
+    form { display: grid; gap: 18px; max-width: 520px; margin-top: 28px; }
+    .after { margin-top: 28px; padding-top: 18px; border-top: 1px solid var(--rule); }
+  </style>
 </head>
-<body class="bg-slate-50 font-sans text-slate-800 antialiased min-h-screen flex flex-col justify-between">
+<body>
 
-    <!-- Sticky Header Navigation -->
-    <header class="sticky top-0 z-50 border-b border-slate-200 bg-white/80 backdrop-blur-md">
-        <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-            <a href="index.html" class="text-xl font-bold tracking-tight text-slate-900">aubrey<span class="text-indigo-600">kennedy</span>.com</a>
-            <nav class="flex gap-6 font-medium text-slate-600">
-                <!-- Using index.html#id takes the user back to the home page and scrolls directly to that specific anchor section -->
-                <a href="index.html#about" class="hover:text-indigo-600 transition">About</a>
-                <a href="index.html#professional" class="hover:text-indigo-600 transition">Professional</a>
-                <a href="index.html#personal" class="hover:text-indigo-600 transition">Personal</a>
-                <a href="contact.html" class="text-indigo-600 font-semibold">Contact</a>
-            </nav>
+  <header class="nav">
+    <div class="wrap-wide">
+      <a class="name" href="index.html">Portfolio</a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links">Menu</button>
+      <nav class="nav-links" id="nav-links">
+        <a href="index.html">Home</a>
+        <a href="professional.html">Professional</a>
+        <a href="personal.html">Personal</a>
+        <a href="physics.html">Physics</a>
+        <a href="contact.html" aria-current="page">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <section class="page-head">
+        <h1>Contact</h1>
+        <p>For recruiting, collaboration, or questions, send a message and I'll reply by email.</p>
+      </section>
+
+      <form action="https://portfolio-contact-backend.hyhz2cbgh5.workers.dev" method="POST">
+        <input type="hidden" name="_next" value="https://aubreykennedy.com/success.html">
+        <div>
+          <label class="field" for="name">Name</label>
+          <input class="input" type="text" id="name" name="name" required autocomplete="name">
         </div>
-    </header>
+        <div>
+          <label class="field" for="email">Email</label>
+          <input class="input" type="email" id="email" name="email" required autocomplete="email">
+        </div>
+        <div>
+          <label class="field" for="message">Message</label>
+          <textarea class="input" id="message" name="message" rows="6" required></textarea>
+        </div>
+        <div><button type="submit" class="btn">Send</button></div>
+      </form>
 
- <!-- Main Content Container -->
-    <main class="mx-auto max-w-4xl px-6 py-16 w-full flex-grow flex items-center justify-center">
-        <section class="grid gap-12 md:grid-cols-2 bg-white rounded-3xl border border-slate-200 p-8 md:p-12 shadow-sm w-full">
-            
-            <!-- Professional Outreach Context -->
-            <div class="flex flex-col justify-between">
-                <div>
-                    <h1 class="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
-                        Let's Connect.
-                    </h1>
-                    <p class="mt-4 text-base text-slate-600 leading-relaxed">
-                        Whether you are a recruiter looking over my site, a fellow scientist/engineer wanting to discuss hot topics, or just looking to connect professionally, feel free to drop a message!
-                    </p>
-                </div>
-                
-                <!-- Info Readouts -->
-                <div class="mt-8 space-y-4 border-t border-slate-100 pt-6">
-                    <div class="flex items-center gap-3 text-sm text-slate-600">
-                        <span class="font-mono text-xs text-indigo-600 uppercase tracking-wider">Availability:</span>
-                        <span>Open to select project inquiries</span>
-                    </div>
-                </div>
-            </div>
+      <p class="after small muted">Résumé: <a href="Aubrey_Kennedy_Resume_2026.pdf" download="Aubrey_Kennedy_Resume.pdf">PDF</a></p>
+    </div>
+  </main>
 
-            <!-- Collect personal information -->
-            <form action="https://portfolio-contact-backend.hyhz2cbgh5.workers.dev" method="POST" class="space-y-5">
-                
-                <!-- This hidden line forces Formspree to route straight to success screen -->
-                <input type="hidden" name="_next" value="https://aubreykennedy.com/success.html" />
-
-                <div>
-                    <label for="name" class="block text-xs font-mono font-bold uppercase tracking-wider text-slate-500 mb-2">Name</label>
-                    <input type="text" id="name" name="name" required class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-3 text-sm text-slate-900 placeholder-slate-400 focus:border-indigo-500 focus:bg-white focus:outline-none transition">
-                </div>
-
-                <div>
-                    <label for="email" class="block text-xs font-mono font-bold uppercase tracking-wider text-slate-500 mb-2">Email Address</label>
-                    <input type="email" id="email" name="email" required class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-3 text-sm text-slate-900 placeholder-slate-400 focus:border-indigo-500 focus:bg-white focus:outline-none transition">
-                </div>
-
-                <div>
-                    <label for="message" class="block text-xs font-mono font-bold uppercase tracking-wider text-slate-500 mb-2">Message</label>
-                    <textarea id="message" name="message" rows="4" required class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-3 text-sm text-slate-900 placeholder-slate-400 focus:border-indigo-500 focus:bg-white focus:outline-none transition"></textarea>
-                </div>
-
-                <button type="submit" class="w-full rounded-xl bg-slate-900 py-3 text-center text-sm font-semibold text-white hover:bg-indigo-600 shadow-sm transition duration-200">
-                    Send Message
-                </button>
-            </form>
-
-        </section>
-    </main>
-
-    <footer class="border-t border-slate-200 bg-white py-8 text-center text-xs text-slate-400 w-full">
-        <p>&copy; 2026 Aubrey Kennedy. Powered by Cloudflare Pages.</p>
-    </footer>
-
+  <footer class="footer">
+    <div class="wrap-wide"><span>&copy; 2026 Aubrey Kennedy</span></div>
+  </footer>
+  <script src="assets/site.js"></script>
 </body>
 </html>

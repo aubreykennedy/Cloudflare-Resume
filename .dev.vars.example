@@ -1,0 +1,2 @@
+# Copy to .dev.vars for local development (that file is git-ignored).
+ADMIN_PASSWORD=change-me

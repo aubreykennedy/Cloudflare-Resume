@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Physics notes | Aubrey Kennedy</title>
+  <meta name="description" content="Notes on quantum field theory, quantum electrodynamics, quantum chromodynamics and quantum hydrodynamics.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/site.css">
+  <style>
+    .contents { margin-top: 18px; }
+    .contents a { margin-right: 14px; }
+    .note { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(260px, 1fr); gap: 40px; align-items: start; padding: 28px 0 40px; }
+    @media (max-width: 800px) { .note { grid-template-columns: 1fr; gap: 24px; } }
+    .note .prose p { margin-top: 14px; color: var(--ink-2); }
+    .note .prose p:first-of-type { margin-top: 0; }
+    .note .prose strong { color: var(--ink); font-weight: 600; }
+    .eq { margin-top: 16px; padding: 12px 16px; border-left: 2px solid var(--blue); background: #fff; font-family: var(--mono); font-size: 0.95rem; color: var(--ink); overflow-x: auto; white-space: nowrap; }
+    .eq small { display: block; margin-top: 6px; font-family: var(--sans); color: var(--muted); font-size: 0.84rem; white-space: normal; }
+    .fig svg { width: 100%; height: auto; display: block; }
+    dl.keys { margin: 18px 0 0; }
+    dl.keys dt { font-family: var(--mono); font-size: 0.72rem; color: var(--muted); margin-top: 10px; }
+    dl.keys dd { margin: 2px 0 0; font-size: 0.93rem; color: var(--ink-2); }
+    .further { margin-top: 20px; font-size: 0.9rem; color: var(--muted); }
+  </style>
+</head>
+<body>
+
+  <header class="nav">
+    <div class="wrap-wide">
+      <a class="name" href="index.html">Portfolio</a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links">Menu</button>
+      <nav class="nav-links" id="nav-links">
+        <a href="index.html">Home</a>
+        <a href="professional.html">Professional</a>
+        <a href="personal.html">Personal</a>
+        <a href="physics.html" aria-current="page">Physics</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap-wide">
+      <section class="page-head">
+        <h1>Physics notes</h1>
+        <p>Notes on quantum field theory, the two field theories behind the tracks on the home page (QED and QCD), and quantum hydrodynamics.</p>
+        <p class="mono contents">Contents: <a href="#qft">QFT</a> <a href="#qed">QED</a> <a href="#qcd">QCD</a> <a href="#qhd">Quantum hydrodynamics</a></p>
+      </section>
+
+      <!-- ================= QFT ================= -->
+      <section class="block" id="qft">
+        <h2>Quantum field theory</h2>
+        <div class="note">
+          <div class="prose">
+            <p>Quantum field theory (QFT) is the framework that QED and QCD are built in. It combines quantum mechanics with special relativity. The basic objects are fields, one for each kind of particle, filling all of space. A particle is a quantum of excitation of its field, in the same way a photon is a quantum of the electromagnetic field.</p>
+            <p><strong>Why fields.</strong> Relativity allows particles to be created and destroyed, and single-particle quantum mechanics cannot describe that. In QFT the field operators create and annihilate particles, so states with different particle numbers live in the same space. Pair production, decays and scattering are all described by the same equations.</p>
+            <div class="eq">ℒ = ψ̄ (iγ^μ D_μ − m) ψ − ¼ F_μν F^μν<small>The QED Lagrangian. The first term is the electron field, the second the photon field, and the covariant derivative D_μ = ∂_μ + ieA_μ couples them. All of QED follows from this line.</small></div>
+            <p><strong>Symmetry fixes the forces.</strong> Requiring the theory to be unchanged by a local phase rotation of the electron field (a gauge symmetry) forces a photon field to exist and fixes how it couples. The same principle with the symmetry group SU(3) gives QCD and its eight gluons; with SU(2)×U(1) it gives the weak and electromagnetic forces together. The Standard Model is the QFT built from these symmetries plus the Higgs field.</p>
+            <p><strong>Calculating.</strong> Predictions are made with perturbation theory, organised by Feynman diagrams. Loop diagrams give divergent integrals; renormalisation absorbs the divergences into the measured mass and charge, and the finite remainder is the prediction. A consequence is that couplings run with energy scale, which is why α grows slowly and α_s shrinks.</p>
+            <p><strong>In the chamber.</strong> Every event on the home page is a QFT process: a photon converting to a pair (QED), a beam proton breaking a nucleus into pions (QCD), a pion or muon decaying (weak interaction). The bubbles themselves come from ionisation, the lowest-order QED interaction between the passing charge and the atomic electrons.</p>
+            <p class="further">Further reading: Lancaster and Blundell, <em>Quantum Field Theory for the Gifted Amateur</em>; Zee, <em>Quantum Field Theory in a Nutshell</em>; Peskin and Schroeder, <em>An Introduction to Quantum Field Theory</em>.</p>
+          </div>
+          <div>
+            <figure class="frame fig">
+              <svg viewBox="0 0 320 200" role="img" aria-label="A field drawn as a line of coupled oscillators, with one localised excitation representing a particle">
+                <line x1="20" y1="120" x2="300" y2="120" stroke="#d8d5cb" stroke-width="1"/>
+                <polyline fill="none" stroke="#1a2fd0" stroke-width="2" points="20,120 40,120 60,120 80,119 100,116 115,108 125,92 135,72 145,60 155,68 165,92 175,118 185,140 195,156 205,160 215,150 225,134 240,122 255,119 270,120 300,120"/>
+                <g fill="#1a2fd0">
+                  <circle cx="20" cy="120" r="2.5"/><circle cx="40" cy="120" r="2.5"/><circle cx="60" cy="120" r="2.5"/><circle cx="80" cy="119" r="2.5"/><circle cx="100" cy="116" r="2.5"/><circle cx="125" cy="92" r="2.5"/><circle cx="145" cy="60" r="2.5"/><circle cx="165" cy="92" r="2.5"/><circle cx="185" cy="140" r="2.5"/><circle cx="205" cy="160" r="2.5"/><circle cx="225" cy="134" r="2.5"/><circle cx="255" cy="119" r="2.5"/><circle cx="280" cy="120" r="2.5"/><circle cx="300" cy="120" r="2.5"/>
+                </g>
+                <g font-family="JetBrains Mono, monospace" font-size="11" fill="#3b4358">
+                  <text x="20" y="28">field: one value at every point in space</text>
+                  <text x="20" y="188">vacuum (field at rest)</text>
+                  <text x="120" y="48" fill="#1a2fd0">one quantum = one particle</text>
+                </g>
+              </svg>
+              <figcaption>A field sketched as a line of coupled oscillators. Most of it sits in its ground state (the vacuum). A localised excitation carrying one quantum of energy is a particle.</figcaption>
+            </figure>
+            <dl class="keys">
+              <dt>Objects</dt><dd>Fields, one per particle type</dd>
+              <dt>Particles</dt><dd>Quanta of the fields; created and destroyed by field operators</dd>
+              <dt>Forces</dt><dd>Fixed by gauge symmetry: U(1), SU(2), SU(3)</dd>
+              <dt>Standard Model</dt><dd>SU(3)×SU(2)×U(1) gauge fields, three generations of fermions, the Higgs field</dd>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= QED ================= -->
+      <section class="block" id="qed">
+        <h2>Quantum electrodynamics</h2>
+        <div class="note">
+          <div class="prose">
+            <p>QED is the quantum field theory of the electron field and the photon field. Every track on the home page is an electromagnetic process: a charged particle moving through liquid hydrogen transfers energy to the electrons of the atoms it passes, and photons carry that interaction.</p>
+            <p><strong>Fields.</strong> Electrons and photons are excitations of two quantum fields. Electrons interact by emitting and absorbing photons; a photon exchanged between two electrons transfers momentum, which is the electromagnetic force.</p>
+            <p><strong>Feynman diagrams.</strong> Every way a process can happen gets a diagram and a complex number called an amplitude. The amplitudes for all diagrams are summed and the result squared to get a probability. Simple diagrams dominate because each photon vertex contributes a factor of the fine-structure constant, roughly 1/137, so a diagram with two extra vertices is suppressed by about 137².</p>
+            <div class="eq">α = e² / (4π ε₀ ħ c) ≈ 1 / 137.036<small>The fine-structure constant: the strength of one photon–electron coupling. Because it is small, perturbation theory works well.</small></div>
+            <p><strong>Precision.</strong> QED predicts the electron's anomalous magnetic moment to about twelve significant figures, in agreement with experiment. It is the most precisely tested theory in physics.</p>
+            <p><strong>In the chamber.</strong> A gamma ray is invisible until it converts into an electron and a positron near a nucleus, the V-shaped pair in the field guide. The electron then radiates photons as it curls (bremsstrahlung), which is why electron spirals tighten quickly.</p>
+            <p class="further">Further reading: Feynman, <em>QED: The Strange Theory of Light and Matter</em>.</p>
+          </div>
+          <div>
+            <figure class="frame fig">
+              <svg viewBox="0 0 320 200" role="img" aria-label="Feynman diagram of electron–electron scattering by photon exchange">
+                <g stroke="#1a2fd0" stroke-width="2" fill="none">
+                  <path d="M20 40 L110 100"/><path d="M110 100 L20 160"/>
+                  <path d="M300 40 L210 100"/><path d="M210 100 L300 160"/>
+                  <path d="M110 100 q 12 -12 25 0 t 25 0 t 25 0 t 25 0" stroke="#b07a1a"/>
+                </g>
+                <g fill="#1a2fd0"><polygon points="62,66 70,76 58,80"/><polygon points="70,124 58,120 62,134"/></g>
+                <g fill="#1a2fd0"><polygon points="258,66 250,76 262,80"/><polygon points="250,124 262,120 258,134"/></g>
+                <circle cx="110" cy="100" r="4" fill="#12182b"/><circle cx="210" cy="100" r="4" fill="#12182b"/>
+                <g font-family="JetBrains Mono, monospace" font-size="13" fill="#3b4358">
+                  <text x="14" y="32">e⁻</text><text x="14" y="184">e⁻</text><text x="292" y="32">e⁻</text><text x="292" y="184">e⁻</text>
+                  <text x="150" y="88" fill="#b07a1a">γ</text>
+                </g>
+              </svg>
+              <figcaption>Two electrons repel by exchanging a photon (γ). Time runs left to right; the wavy line is the photon; each vertex costs a factor of √α.</figcaption>
+            </figure>
+            <dl class="keys">
+              <dt>Force carrier</dt><dd>Photon; massless; charge 0; infinite range</dd>
+              <dt>Coupling</dt><dd>α ≈ 1/137, grows slowly at high energy</dd>
+              <dt>Precision test</dt><dd>Electron g−2, agreement to ~1 part in 10¹²</dd>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= QCD ================= -->
+      <section class="block" id="qcd">
+        <h2>Quantum chromodynamics</h2>
+        <div class="note">
+          <div class="prose">
+            <p>Protons, neutrons, pions and the sprays of tracks from a beam collision are made of quarks, held together by the strong force. QCD is the theory of that force. Its structure is similar to QED, but its behaviour is very different.</p>
+            <p><strong>Colour charge.</strong> Quarks carry one of three colour charges (labelled red, green and blue), and the force carriers are eight gluons. Unlike photons, gluons carry colour charge themselves, so they interact with one another.</p>
+            <p><strong>Asymptotic freedom and confinement.</strong> Because gluons interact with gluons, the strong coupling weakens at short distances and high energies, so quarks inside a proton behave almost as free particles. At large distances the field between two quarks forms a flux tube whose energy grows with separation, until it is energetically cheaper to create a new quark–antiquark pair from the vacuum than to stretch further. This is confinement: isolated quarks are never observed, only hadrons.</p>
+            <div class="eq">α_s(Q²) ≈ 12π / [(33 − 2n_f) · ln(Q² / Λ²)]<small>The running strong coupling: it decreases as the momentum transfer Q grows. Λ ≈ 200 MeV is the scale below which perturbation theory fails.</small></div>
+            <p><strong>Mass.</strong> The Higgs field gives the up and down quarks only a few MeV each, yet a proton has a mass of 938 MeV. Almost all of it is the energy of the gluon field and the quarks' motion, confined inside the proton.</p>
+            <p><strong>In the chamber.</strong> When a beam proton hits a hydrogen nucleus, quarks scatter and hadronise into a spray of pions and protons: the star of tracks in the simulation. The pions then decay through the weak force into the muons and electrons that kink off their ends.</p>
+            <p class="further">Further reading: Frank Wilczek, <em>The Lightness of Being</em>.</p>
+          </div>
+          <div>
+            <figure class="frame fig">
+              <svg viewBox="0 0 320 200" role="img" aria-label="Diagram of quark confinement: pulling quarks apart stretches a gluon flux tube until it snaps into a new pair">
+                <g font-family="JetBrains Mono, monospace" font-size="12" fill="#3b4358">
+                  <text x="14" y="24">pull apart →</text><text x="14" y="118">…and it snaps into two mesons</text>
+                </g>
+                <line x1="60" y1="60" x2="260" y2="60" stroke="#2f6b45" stroke-width="8" stroke-linecap="round" opacity="0.3"/>
+                <line x1="60" y1="60" x2="260" y2="60" stroke="#2f6b45" stroke-width="3" stroke-dasharray="6 5"/>
+                <circle cx="60" cy="60" r="9" fill="#9b1c31"/><circle cx="260" cy="60" r="9" fill="#1a2fd0"/>
+                <text x="52" y="45" font-family="JetBrains Mono, monospace" font-size="12" fill="#9b1c31">q</text>
+                <text x="254" y="45" font-family="JetBrains Mono, monospace" font-size="12" fill="#1a2fd0">q̄</text>
+                <line x1="40" y1="160" x2="120" y2="160" stroke="#2f6b45" stroke-width="3" stroke-dasharray="6 5"/>
+                <line x1="200" y1="160" x2="280" y2="160" stroke="#2f6b45" stroke-width="3" stroke-dasharray="6 5"/>
+                <circle cx="40" cy="160" r="9" fill="#9b1c31"/><circle cx="120" cy="160" r="9" fill="#1a2fd0"/>
+                <circle cx="200" cy="160" r="9" fill="#9b1c31"/><circle cx="280" cy="160" r="9" fill="#1a2fd0"/>
+                <text x="140" y="150" font-family="JetBrains Mono, monospace" font-size="11" fill="#b07a1a">new pair</text>
+                <text x="152" y="164" fill="#b07a1a" font-size="14">⇣</text>
+              </svg>
+              <figcaption>A quark and antiquark joined by a gluon flux tube. Stretching it stores energy until a new quark–antiquark pair forms: two hadrons, never a free quark.</figcaption>
+            </figure>
+            <dl class="keys">
+              <dt>Force carriers</dt><dd>8 gluons; massless; carry colour themselves</dd>
+              <dt>Coupling</dt><dd>α_s ≈ 0.12 at the Z mass, ≈ 1 at 1 GeV</dd>
+              <dt>Two regimes</dt><dd>Asymptotic freedom at short range, confinement at long range</dd>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= QUANTUM HYDRODYNAMICS ================= -->
+      <section class="block" id="qhd">
+        <h2>Quantum hydrodynamics</h2>
+        <div class="note">
+          <div class="prose">
+            <p>Write the wavefunction in the Schrödinger equation as a magnitude times a phase, ψ = √ρ · e^{iS/ħ}, and separate the real and imaginary parts. The result, found by Erwin Madelung in 1927, is two equations: a continuity equation for a probability fluid of density ρ, and an Euler equation for its velocity v = ∇S/m, identical to classical fluid dynamics except for one extra term.</p>
+            <div class="eq">Q = −(ħ² / 2m) · (∇²√ρ) / √ρ<small>The quantum potential. It is the only term containing ħ; without it the equations are classical hydrodynamics.</small></div>
+            <p><strong>The quantum potential.</strong> It depends on the shape of the density rather than its magnitude, so a dilute fluid feels it as strongly as a dense one. In this formulation it accounts for the stability of atoms, interference fringes and tunnelling.</p>
+            <p><strong>Superfluids.</strong> Superfluid helium below 2.17 K and Bose–Einstein condensates are fluids described by a single macroscopic wavefunction, so these are their equations of motion. Because the velocity is the gradient of a phase, the fluid cannot rotate smoothly; it rotates only through quantised vortices, each carrying one quantum of circulation, h/m. A rotating superfluid forms a lattice of identical vortices.</p>
+            <div class="eq">∮ v · dl = n · h / m,  n = 0, ±1, ±2, …<small>Quantised circulation: a superfluid vortex carries an integer number of circulation quanta.</small></div>
+            <p><strong>Connection to QCD.</strong> The quark–gluon plasma produced in heavy-ion collisions at RHIC and the LHC behaves as a nearly perfect fluid, with a viscosity-to-entropy ratio close to the bound ħ/4πk_B. Relativistic hydrodynamics is one of the main tools used to compare QCD with those experiments.</p>
+            <p class="further">Further reading: Madelung (1927), <em>Quantentheorie in hydrodynamischer Form</em>; Donnelly, <em>Quantized Vortices in Helium II</em>.</p>
+          </div>
+          <div>
+            <figure class="frame fig">
+              <svg viewBox="0 0 320 200" role="img" aria-label="A lattice of quantised vortices in a rotating superfluid">
+                <rect x="10" y="10" width="300" height="180" fill="#f6f5f0" stroke="#d8d5cb"/>
+                <g fill="none" stroke="#1a2fd0" stroke-width="1.4">
+                  <g id="vx"><circle r="5"/><circle r="12" opacity="0.6"/><circle r="19" opacity="0.3"/><path d="M-3,-6 a6,6 0 1,1 6,0" stroke="#b07a1a" stroke-width="1.6"/></g>
+                </g>
+                <g fill="none" stroke="#1a2fd0" stroke-width="1.4">
+                  <use href="#vx" x="70" y="60"/><use href="#vx" x="160" y="60"/><use href="#vx" x="250" y="60"/>
+                  <use href="#vx" x="115" y="120"/><use href="#vx" x="205" y="120"/>
+                  <use href="#vx" x="70" y="160" opacity="0.6"/><use href="#vx" x="160" y="160" opacity="0.6"/><use href="#vx" x="250" y="160" opacity="0.6"/>
+                </g>
+                <text x="20" y="32" font-family="JetBrains Mono, monospace" font-size="11" fill="#3b4358">rotating superfluid: vortex lattice, each vortex = h/m</text>
+              </svg>
+              <figcaption>A rotating superfluid forms a triangular lattice of identical quantised vortices, as observed in helium and Bose–Einstein condensates.</figcaption>
+            </figure>
+            <dl class="keys">
+              <dt>Key equation</dt><dd>Madelung transform: Schrödinger → continuity + Euler + quantum potential</dd>
+              <dt>Signature</dt><dd>Quantised circulation, h/m per vortex</dd>
+              <dt>Related</dt><dd>Quark–gluon plasma flows as a near-perfect fluid</dd>
+            </dl>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap-wide">
+      <span>&copy; 2026 Aubrey Kennedy</span>
+      <a href="index.html">Home</a>
+    </div>
+  </footer>
+  <script src="assets/site.js"></script>
+</body>
+</html>

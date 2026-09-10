@@ -1,45 +1,223 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aubrey Kennedy | Scientist and Engineer</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aubrey Kennedy</title>
+  <meta name="description" content="Aubrey Kennedy, physicist and electrical engineer. Simulated bubble chamber, work history, projects, books, and art.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/site.css">
+  <style>
+    .hero { position: relative; height: calc(100vh - 56px); min-height: 540px; max-height: 1000px; background: #1220b0; overflow: hidden; }
+    .hero canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; cursor: crosshair; touch-action: pan-y; }
+    .hero-text { position: absolute; left: 0; right: 0; top: 0; z-index: 2; padding: 36px 22px 0; pointer-events: none; }
+    .hero-text .in { max-width: var(--wide-w); margin: 0 auto; }
+    .hero-text .tile { max-width: 560px; padding: 26px 28px; background: rgba(5, 9, 70, 0.62); border: 1px solid rgba(220, 230, 255, 0.28); border-radius: 4px; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); pointer-events: auto; }
+    .hero-text h1 { color: #fff; font-size: clamp(2.2rem, 4.4vw, 3.4rem); }
+    .hero-text p { margin-top: 12px; color: #e3e7ff; font-size: 1.02rem; }
+    .hero-text .hint { margin-top: 14px; font-family: var(--mono); font-size: 0.74rem; color: rgba(227, 231, 255, 0.8); }
+    .strip { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; background: rgba(5, 9, 70, 0.72); border-top: 1px solid rgba(220, 230, 255, 0.18); color: #dfe4ff; font-family: var(--mono); font-size: 0.74rem; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+    .strip .in { max-width: var(--wide-w); margin: 0 auto; padding: 8px 22px; display: flex; align-items: center; gap: 8px 14px; flex-wrap: wrap; }
+    .strip .btn { background: transparent; color: #dfe4ff; border-color: rgba(220, 230, 255, 0.45); font-family: var(--mono); font-size: 0.7rem; padding: 4px 9px; }
+    .strip .btn:hover { background: rgba(255, 255, 255, 0.12); border-color: #fff; color: #fff; }
+    .strip .btn[aria-pressed="true"] { background: #fff; color: #1220b0; border-color: #fff; }
+    .framecount { letter-spacing: 0.14em; color: #fff; }
+    .counts { display: flex; gap: 6px 14px; flex-wrap: wrap; margin-left: auto; }
+    .counts span { white-space: nowrap; cursor: help; }
+    .counts b { font-weight: 600; color: #fff; }
+    .counts span[data-active="1"] { text-decoration: underline; }
+    .tip { position: absolute; z-index: 3; max-width: 300px; pointer-events: none; opacity: 0; transition: opacity .12s; padding: 10px 12px; background: rgba(5, 9, 70, 0.92); border: 1px solid rgba(220, 230, 255, 0.25); color: #e6ecff; font-size: 0.85rem; line-height: 1.45; }
+    .tip.show { opacity: 1; }
+    .tip b { display: block; font-family: var(--serif); font-size: 1.05rem; color: #fff; }
+    .tip .meta { font-family: var(--mono); font-size: 0.68rem; color: #bfd0ff; margin: 2px 0 6px; }
+    @media (max-width: 720px) {
+      .hero { height: auto; min-height: 0; }
+      .hero canvas { position: relative; height: 62vh; min-height: 420px; }
+      .strip { position: relative; }
+      .hero-text { padding-top: 18px; }
+      .hero-text .tile { padding: 18px 18px; }
+      .hero-text p { font-size: 0.95rem; }
+      .tip { max-width: 240px; }
+    }
+
+    .rules { padding-left: 1.3em; margin: 14px 0 0; color: var(--ink-2); }
+    .rules li { margin: 8px 0; }
+    .rules b { color: var(--ink); font-weight: 600; }
+    .plates { list-style: none; margin: 24px 0 0; padding: 0; border-top: 1px solid var(--ink); }
+    .plate { display: grid; grid-template-columns: 340px 1fr; gap: 28px; padding: 22px 0; border-bottom: 1px solid var(--rule); align-items: center; }
+    .plate canvas { width: 100%; height: 190px; display: block; background: #1220b0; }
+    .plate h3 { margin: 4px 0 6px; }
+    .plate p { color: var(--ink-2); font-size: 0.97rem; }
+    @media (max-width: 720px) { .plate { grid-template-columns: 1fr; gap: 12px; } }
+    .links { list-style: none; padding: 0; margin: 18px 0 0; display: flex; gap: 6px 24px; flex-wrap: wrap; }
+  </style>
 </head>
-<body class="bg-slate-50 font-sans text-slate-800 antialiased">
+<body>
 
-    <!-- Sticky Header Navigation -->
-    <header class="sticky top-0 z-50 border-b border-slate-200 bg-white/80 backdrop-blur-md">
-        <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-            <a href="index.html" class="text-xl font-bold tracking-tight text-slate-900">aubrey<span class="text-indigo-600">kennedy</span>.com</a>
-            <nav class="flex gap-6 font-medium text-slate-600">
-                <a href="#about" class="hover:text-indigo-600 transition">About</a>
-                <a href="professional.html" class="hover:text-indigo-600 transition">Professional</a>
-                <a href="personal.html" class="hover:text-indigo-600 transition">Personal</a>
-                <a href="contact.html" class="hover:text-indigo-600 transition">Contact</a>
-            </nav>
+  <header class="nav">
+    <div class="wrap-wide">
+      <a class="name" href="index.html">Portfolio</a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links">Menu</button>
+      <nav class="nav-links" id="nav-links">
+        <a href="index.html" aria-current="page">Home</a>
+        <a href="professional.html">Professional</a>
+        <a href="personal.html">Personal</a>
+        <a href="physics.html">Physics</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" aria-label="Simulated bubble chamber">
+      <canvas id="chamber" aria-label="A simulated bubble chamber: charged particles leave curling white trails in a magnetic field. Hover or tap a track to identify it."></canvas>
+      <div class="hero-text">
+        <div class="in">
+          <div class="tile">
+            <h1>Hello, I'm Aubrey Kennedy!</h1>
+            <p>Welcome to my portfolio site! I'm deeply passionate about physics and understanding how the universe works at every scale; from the quantum world to massive astrophysical systems, it drives me to build a career that combines scientific curiosity and engineering. I have one bachelor's degree in Physics and another in Electrical Engineering from the University of Utah, and today I'm pursuing a master's in Applied Physics at Johns Hopkins University.</p>
+            <p class="hint">This is a simulated bubble chamber. Hover or tap a track to identify the particle.</p>
+          </div>
         </div>
-    </header>
+      </div>
+      <div class="strip">
+        <div class="in">
+          <span class="framecount" id="frame-counter" title="Frame counter">000000</span>
+          <button class="btn" id="btn-identify" aria-pressed="false">Identify</button>
+          <button class="btn" id="btn-field" aria-pressed="true">Magnet</button>
+          <button class="btn" id="btn-pause" aria-pressed="false">Pause</button>
+          <button class="btn" id="btn-clear">Clear</button>
+          <div class="counts" id="legend"></div>
+        </div>
+      </div>
+      <div class="tip" id="tip" role="status"></div>
+    </section>
 
-    <main class="mx-auto max-w-6xl px-6 py-16" id="about">
-        <!-- Summary Section -->
-        <section class="max-w-3xl">
-            <h1 class="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">Hello,</h1>
-            <h1 class="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl mt-1">I am Aubrey Kennedy!</h1>
-            <p class="mt-6 text-lg leading-relaxed text-slate-600">
-                Welcome to my portfolio site! I’m deeply passionate about physics and understanding how the universe works at every scale; from the quantum world to massive astrophysical systems, it drives me to build a career that combines scientific curiosity and engineering. I have one Bachelor degree in Physics and another in Electrical Engineering from the University of Utah; today I am pursuing a Master's degree in Applied Physics at Johns Hopkins University.
-            </p>
-            <div class="mt-8 flex gap-4">
-                <a href="professional.html" class="rounded-xl bg-slate-900 px-5 py-3 text-sm font-semibold text-white hover:bg-indigo-600 shadow-sm transition duration-200">View Career & Builds &rarr;</a>
-                <a href="contact.html" class="rounded-xl border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-600 hover:bg-slate-50 transition duration-200">Get in Touch</a>
-            </div>
-        </section>
+    <div class="wrap">
+      <section class="block" id="guide">
+        <h2>Reading the chamber</h2>
+        <p class="lede">A bubble chamber is a tank of superheated liquid inside a magnet. A charged particle passing through boils a trail of bubbles along its path, and the magnet bends the path. Four rules explain most of what you see.</p>
+        <ol class="rules">
+          <li><b>Bend shows charge.</b> Positive particles curve one way, negative the other. Neutral particles leave no trail.</li>
+          <li><b>Curl shows momentum.</b> The slower or lighter the particle, the more tightly the field bends it. Spirals are particles running out of energy.</li>
+          <li><b>Thickness shows ionisation.</b> Slow, heavy, highly charged particles boil more liquid per centimetre, so their trails are thick and bright.</li>
+          <li><b>Vees and kinks are decays.</b> A track that starts from nothing, or changes direction abruptly, is something invisible turning into something visible.</li>
+        </ol>
+      </section>
+    </div>
+    <div class="wrap-wide">
+      <ol class="plates" id="specimens"></ol>
+      <p class="mono" style="margin-top:14px;max-width:80ch">The simulation uses the real scaling laws (Lorentz curvature, Bethe–Bloch energy loss, multiple scattering, bremsstrahlung) with constants chosen for a screen rather than a detector. Alpha and beta tracks are what a home cloud chamber shows. The beam and collision sprays are what CERN's hydrogen bubble chambers photographed in the 1960s and 70s.</p>
+    </div>
 
-    </main>
+  </main>
 
-    <footer class="border-t border-slate-200 bg-white py-12 text-center text-sm text-slate-500">
-        <p>&copy; 2026 Aubrey Kennedy. Powered by Cloudflare Pages.</p>
-    </footer>
+  <footer class="footer">
+    <div class="wrap-wide">
+      <span>&copy; 2026 Aubrey Kennedy</span>
+      <span>Chamber after the <a href="https://cds.cern.ch/record/39474" target="_blank" rel="noopener">CERN bubble chamber photographs</a>.</span>
+    </div>
+  </footer>
 
+  <script src="assets/site.js"></script>
+  <script src="assets/chamber.js"></script>
+  <script>
+  (function () {
+    const canvas = document.getElementById('chamber');
+    const tip = document.getElementById('tip');
+    const legend = document.getElementById('legend');
+    const frameEl = document.getElementById('frame-counter');
+    const S = Chamber.SPECIES;
+
+    const LEGEND = ['beam', 'muon', 'electron', 'positron', 'alpha', 'proton', 'gamma', 'pion', 'neutron'];
+    legend.innerHTML = LEGEND.map(k => `<span data-key="${k}" title="${Site.esc(S[k].name)}"><b data-n="${k}">0</b> ${Site.esc(S[k].sym)}</span>`).join('');
+
+    let lastFrame = 0;
+    const chamber = Chamber.mount(canvas, {
+      mode: 'live', rate: 1.5,
+      onFrame(st) {
+        lastFrame++;
+        if (lastFrame % 6 === 0) {
+          frameEl.textContent = String(st.events * 7 + 33649).padStart(6, '0');
+          for (const k of LEGEND) {
+            const el = legend.querySelector(`[data-n="${k}"]`);
+            if (el) el.textContent = st.counts[k] || 0;
+          }
+        }
+      },
+    });
+
+    const bId = document.getElementById('btn-identify');
+    const bField = document.getElementById('btn-field');
+    const bPause = document.getElementById('btn-pause');
+    function paintLegend() {
+      legend.querySelectorAll('span[data-key]').forEach(sp => { sp.style.color = chamber.identify ? S[sp.dataset.key].color : ''; });
+    }
+    bId.addEventListener('click', () => { chamber.setIdentify(!chamber.identify); bId.setAttribute('aria-pressed', chamber.identify); paintLegend(); });
+    bField.addEventListener('click', () => { chamber.setField(!chamber.field); bField.setAttribute('aria-pressed', chamber.field); });
+    bPause.addEventListener('click', () => { chamber.setPaused(!chamber.paused); bPause.setAttribute('aria-pressed', chamber.paused); bPause.textContent = chamber.paused ? 'Resume' : 'Pause'; });
+    document.getElementById('btn-clear').addEventListener('click', () => chamber.clear());
+
+    // hover / tap identification
+    let hideTimer = 0;
+    function showTip(hit, cx, cy) {
+      const g = hit.guide, sp = hit.spec;
+      tip.innerHTML = `<b>${Site.esc(hit.name.charAt(0).toUpperCase() + hit.name.slice(1))}</b><div class="meta">${Site.esc(sp.sym)} · charge ${Site.esc(sp.charge)}${g !== sp ? ' · part of: ' + Site.esc(g.name) : ''}</div>${Site.esc(g.tell)}`;
+      const rect = canvas.getBoundingClientRect();
+      const host = canvas.parentElement.getBoundingClientRect();
+      let x = cx - host.left + 16, y = cy - host.top + 16;
+      const tw = tip.offsetWidth || 260, th = tip.offsetHeight || 100;
+      if (x + tw > rect.width - 12) x = cx - host.left - tw - 16;
+      if (y + th > rect.height + (rect.top - host.top) - 12) y = cy - host.top - th - 16;
+      tip.style.left = x + 'px'; tip.style.top = y + 'px';
+      tip.classList.add('show');
+      legend.querySelectorAll('span[data-key]').forEach(sp => sp.dataset.active = sp.dataset.key === g.key ? '1' : '0');
+    }
+    function hideTip() { tip.classList.remove('show'); legend.querySelectorAll('span[data-key]').forEach(sp => sp.dataset.active = '0'); }
+    function probe(clientX, clientY, radius) {
+      const r = canvas.getBoundingClientRect();
+      const hit = chamber.hit(clientX - r.left, clientY - r.top, radius);
+      if (hit) showTip(hit, clientX, clientY); else hideTip();
+      return hit;
+    }
+    let raf = 0;
+    canvas.addEventListener('mousemove', (e) => {
+      if (raf) return;
+      raf = requestAnimationFrame(() => { raf = 0; probe(e.clientX, e.clientY, 11); });
+    });
+    canvas.addEventListener('mouseleave', hideTip);
+    canvas.addEventListener('touchstart', (e) => {
+      const t = e.touches[0];
+      if (probe(t.clientX, t.clientY, 22)) { clearTimeout(hideTimer); hideTimer = setTimeout(hideTip, 4500); }
+    }, { passive: true });
+
+    // plates: one looping specimen per particle type
+    const GUIDE = ['beam', 'muon', 'electron', 'positron', 'alpha', 'proton', 'gamma', 'pion', 'neutron'];
+    const list = document.getElementById('specimens');
+    list.innerHTML = GUIDE.map((k, i) => `
+      <li class="plate">
+        <canvas data-species="${k}" aria-hidden="true"></canvas>
+        <div>
+          <span class="mono">Fig. ${i + 1} · ${Site.esc(S[k].sym)} · charge ${Site.esc(S[k].charge)}</span>
+          <h3>${Site.esc(S[k].name)}</h3>
+          <p>${Site.esc(S[k].tell)}</p>
+        </div>
+      </li>`).join('');
+    const specimens = new Map();
+    const io = new IntersectionObserver((entries) => {
+      for (const en of entries) {
+        const c = en.target;
+        if (en.isIntersecting && !specimens.has(c)) {
+          specimens.set(c, Chamber.mount(c, { mode: 'specimen', species: c.dataset.species, identify: false, bubbles: false }));
+        } else if (!en.isIntersecting && specimens.has(c)) {
+          specimens.get(c).destroy(); specimens.delete(c);
+        }
+      }
+    }, { rootMargin: '120px' });
+    list.querySelectorAll('canvas').forEach(c => io.observe(c));
+  })();
+  </script>
 </body>
 </html>

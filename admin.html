@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Admin | Aubrey Kennedy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/site.css">
+  <style>
+    .admin { padding: 40px 0 80px; }
+    .gate { max-width: 420px; margin: 60px auto; display: grid; gap: 16px; }
+    .tabs { display: flex; gap: 4px; margin: 20px 0; border-bottom: 1px solid var(--rule-strong); }
+    .tabs button { background: none; border: 0; border-bottom: 2px solid transparent; color: var(--muted); font: inherit; font-weight: 500; padding: 8px 12px; cursor: pointer; margin-bottom: -1px; }
+    .tabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--ink); }
+    .panel { display: none; } .panel.active { display: block; }
+    .split { display: grid; grid-template-columns: 360px 1fr; gap: 28px; align-items: start; }
+    @media (max-width: 900px) { .split { grid-template-columns: 1fr; } }
+    form.editor { display: grid; gap: 14px; position: sticky; top: 76px; }
+    .editor h3 { display: flex; justify-content: space-between; align-items: center; font-size: 1.15rem; }
+    .list { display: grid; gap: 8px; }
+    .row { display: flex; gap: 12px; align-items: center; padding: 10px 12px; }
+    .row .main { flex: 1; min-width: 0; }
+    .row h4 { font-family: var(--serif); font-weight: 500; font-size: 1.05rem; margin: 0; }
+    .row .sub { color: var(--muted); font-size: 0.85rem; }
+    .row .acts { display: flex; gap: 6px; flex: none; }
+    .row img { width: 56px; height: 56px; object-fit: cover; border: 1px solid var(--rule); flex: none; }
+    .drop { border: 1px dashed var(--rule-strong); background: #fff; padding: 22px; text-align: center; color: var(--muted); cursor: pointer; font-size: 0.9rem; }
+    .drop.over { border-color: var(--blue); background: var(--blue-soft); }
+    .drop img { max-height: 220px; margin: 0 auto 10px; }
+    .toolbar { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 14px; flex-wrap: wrap; }
+    .toolbar .input { max-width: 320px; padding: 7px 10px; font-size: 0.9rem; }
+    .check { display: flex; gap: 8px; align-items: center; font-size: 0.9rem; color: var(--ink-2); }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="wrap-wide">
+      <a class="name" href="index.html">Portfolio</a>
+      <nav class="nav-links" id="nav-links">
+        <a href="personal.html">View site</a>
+        <a href="admin.html" aria-current="page">Admin</a>
+        <a href="#" id="logout" hidden>Sign out</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap-wide admin">
+      <!-- password gate -->
+      <form class="box gate" id="gate">
+        <div>
+          <h1 style="font-size:1.6rem">Admin</h1>
+          <p class="muted small" style="margin-top:8px">The password is the <code>ADMIN_PASSWORD</code> secret on the Cloudflare Pages project.</p>
+        </div>
+        <div>
+          <label class="field" for="pw">Password</label>
+          <input class="input" id="pw" type="password" autocomplete="current-password" required>
+        </div>
+        <button class="btn" type="submit">Sign in</button>
+        <div class="status err" id="gate-status"></div>
+      </form>
+
+      <!-- the panel -->
+      <div id="app" hidden>
+        <h1 style="font-size:1.8rem">Admin</h1>
+        <div class="notice" id="setup-notice" hidden style="margin-top:16px"></div>
+
+        <div class="tabs" role="tablist">
+          <button role="tab" aria-selected="true" data-tab="books">Books</button>
+          <button role="tab" aria-selected="false" data-tab="art">Paintings</button>
+          <button role="tab" aria-selected="false" data-tab="projects">Projects</button>
+        </div>
+
+        <!-- ======== BOOKS ======== -->
+        <section class="panel active" id="panel-books" role="tabpanel">
+          <div class="split">
+            <form class="box editor" id="book-form">
+              <h3><span id="book-form-title">Add a book</span><button type="button" class="btn btn-line btn-sm" id="book-cancel" hidden>Cancel</button></h3>
+              <input type="hidden" name="id">
+              <div><label class="field">Title *</label><input class="input" name="title" required></div>
+              <div><label class="field">Subtitle</label><input class="input" name="subtitle"></div>
+              <div><label class="field">Author *</label><input class="input" name="author" required></div>
+              <div><label class="field">Genre</label><input class="input" name="genre" list="genres"><datalist id="genres"></datalist></div>
+              <div><label class="field">Status</label>
+                <select class="input" name="status"><option value="finished">Finished</option><option value="reading">Reading now</option><option value="queued">Up next</option></select></div>
+              <div><label class="field">Notes (shown on the site)</label><textarea class="input" name="notes" rows="2" placeholder="Optional"></textarea></div>
+              <button class="btn" type="submit" id="book-submit">Add book</button>
+              <div class="status" id="book-status"></div>
+            </form>
+            <div>
+              <div class="toolbar">
+                <input class="input" id="book-search" type="search" placeholder="Filter">
+                <span class="mono" id="book-count"></span>
+              </div>
+              <div class="list" id="book-list"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ======== ART ======== -->
+        <section class="panel" id="panel-art" role="tabpanel">
+          <div class="split">
+            <form class="box editor" id="art-form">
+              <h3><span id="art-form-title">Upload a painting</span><button type="button" class="btn btn-line btn-sm" id="art-cancel" hidden>Cancel</button></h3>
+              <input type="hidden" name="id">
+              <div id="art-drop-wrap">
+                <label class="field">Image *</label>
+                <div class="drop" id="art-drop" tabindex="0"></div>
+                <input type="file" id="art-file" accept="image/jpeg,image/png,image/webp" hidden>
+              </div>
+              <div><label class="field">Title *</label><input class="input" name="title" required></div>
+              <div><label class="field">Medium</label>
+                <select class="input" name="medium"><option value="acrylic">Acrylic</option><option value="makeup">Makeup</option><option value="watercolor">Watercolor</option><option value="digital">Digital</option><option value="other">Other</option></select></div>
+              <div><label class="field">Year</label><input class="input" name="year" placeholder="2026"></div>
+              <div><label class="field">Caption</label><textarea class="input" name="caption" rows="2"></textarea></div>
+              <button class="btn" type="submit" id="art-submit">Upload</button>
+              <div class="status" id="art-status"></div>
+            </form>
+            <div>
+              <div class="toolbar"><span class="mono" id="art-count"></span></div>
+              <div class="list" id="art-list"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ======== PROJECTS ======== -->
+        <section class="panel" id="panel-projects" role="tabpanel">
+          <div class="split">
+            <form class="box editor" id="proj-form">
+              <h3><span id="proj-form-title">Add a project</span><button type="button" class="btn btn-line btn-sm" id="proj-cancel" hidden>Cancel</button></h3>
+              <input type="hidden" name="id">
+              <div><label class="field">Name *</label><input class="input" name="name" required></div>
+              <div><label class="field">Principle</label><input class="input" name="principle" placeholder="e.g. Magnetism, planetary gears"></div>
+              <div><label class="field">Description</label><textarea class="input" name="description" rows="3"></textarea></div>
+              <div><label class="field">Status</label>
+                <select class="input" name="status"><option value="done">Done</option><option value="next">Next</option></select></div>
+              <div><label class="field">Order (1 = first)</label><input class="input" name="sort_order" type="number" min="1" placeholder="Leave blank to add at the end"></div>
+              <div>
+                <label class="field">Photo (optional)</label>
+                <div class="drop" id="proj-drop" tabindex="0"></div>
+                <input type="file" id="proj-file" accept="image/jpeg,image/png,image/webp" hidden>
+                <label class="check" id="proj-remove-wrap" hidden style="margin-top:8px"><input type="checkbox" name="remove_image" value="1"> Remove the current photo</label>
+              </div>
+              <button class="btn" type="submit" id="proj-submit">Add project</button>
+              <div class="status" id="proj-status"></div>
+            </form>
+            <div>
+              <div class="toolbar"><span class="mono" id="proj-count"></span></div>
+              <div class="list" id="proj-list"></div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <script src="assets/site.js"></script>
+  <script>
+  (function () {
+    const esc = Site.esc;
+    const $ = (s) => document.querySelector(s);
+    const KEY = 'ak-admin-token';
+    let token = sessionStorage.getItem(KEY) || '';
+
+    // ---------- api ----------
+    async function api(path, opts = {}) {
+      const headers = Object.assign({}, opts.headers || {});
+      if (token) headers.authorization = 'Bearer ' + token;
+      if (opts.json) { headers['content-type'] = 'application/json'; opts.body = JSON.stringify(opts.json); }
+      const r = await fetch(path, { method: opts.method || 'GET', headers, body: opts.body });
+      let data = null;
+      try { data = await r.json(); } catch (e) { /* non-json */ }
+      if (r.status === 401) { signOut(); throw new Error('Wrong password.'); }
+      if (!r.ok || (data && data.ok === false)) throw new Error((data && data.error) || ('HTTP ' + r.status));
+      return data;
+    }
+    function setStatus(el, msg, ok) { el.textContent = msg || ''; el.className = 'status ' + (msg ? (ok ? 'ok' : 'err') : ''); }
+    function setupWarning(msg) { const n = $('#setup-notice'); n.hidden = false; n.textContent = msg; }
+
+    // ---------- gate ----------
+    const gate = $('#gate'), app = $('#app'), logout = $('#logout');
+    gate.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      token = $('#pw').value;
+      setStatus($('#gate-status'), '');
+      try {
+        await api('/api/auth', { method: 'POST', json: {} });
+        sessionStorage.setItem(KEY, token);
+        enter();
+      } catch (err) { token = ''; setStatus($('#gate-status'), err.message, false); }
+    });
+    function signOut() { token = ''; sessionStorage.removeItem(KEY); app.hidden = true; gate.hidden = false; logout.hidden = true; }
+    logout.addEventListener('click', (e) => { e.preventDefault(); signOut(); });
+    async function enter() {
+      gate.hidden = true; app.hidden = false; logout.hidden = false;
+      await Promise.all([loadBooks(), loadArt(), loadProjects()]);
+    }
+    if (token) api('/api/auth', { method: 'POST', json: {} }).then(enter).catch(signOut);
+
+    // ---------- tabs ----------
+    document.querySelectorAll('.tabs [role=tab]').forEach(b => b.addEventListener('click', () => {
+      document.querySelectorAll('.tabs [role=tab]').forEach(x => x.setAttribute('aria-selected', x === b));
+      document.querySelectorAll('.panel').forEach(p => p.classList.toggle('active', p.id === 'panel-' + b.dataset.tab));
+    }));
+
+    // ---------- image drop zones (shared) ----------
+    // Shrinks the image in the browser first, so uploads stay small.
+    function shrink(file, max) {
+      return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.onload = () => {
+          const s = Math.min(1, max / Math.max(img.width, img.height));
+          const w = Math.round(img.width * s), h = Math.round(img.height * s);
+          const c = document.createElement('canvas'); c.width = w; c.height = h;
+          c.getContext('2d').drawImage(img, 0, 0, w, h);
+          c.toBlob((blob) => blob ? resolve({ blob, width: w, height: h }) : reject(new Error('encode failed')), 'image/jpeg', 0.88);
+          URL.revokeObjectURL(img.src);
+        };
+        img.onerror = () => reject(new Error('unsupported file'));
+        img.src = URL.createObjectURL(file);
+      });
+    }
+    function makeDrop(dropEl, inputEl, statusEl, onReady, hint) {
+      const idle = `<span>${hint}<br><span class="small">JPEG, PNG or WebP. Shrunk to 1800px before upload.</span></span>`;
+      const state = { file: null, dims: null, name: '' };
+      function reset() { state.file = null; state.dims = null; state.name = ''; dropEl.innerHTML = idle; }
+      async function take(file) {
+        setStatus(statusEl, 'Preparing image…', true);
+        try {
+          const { blob, width, height } = await shrink(file, 1800);
+          state.file = new File([blob], (file.name.replace(/\.[^.]+$/, '') || 'image') + '.jpg', { type: 'image/jpeg' });
+          state.dims = { width, height };
+          state.name = file.name.replace(/\.[^.]+$/, '').replace(/[-_]+/g, ' ');
+          dropEl.innerHTML = `<img src="${URL.createObjectURL(blob)}" alt=""><div class="small muted">${width}×${height} · ${(blob.size / 1024).toFixed(0)} KB · click to change</div>`;
+          setStatus(statusEl, '');
+          if (onReady) onReady(state);
+        } catch (err) { setStatus(statusEl, 'Could not read that image: ' + err.message, false); }
+      }
+      dropEl.addEventListener('click', () => inputEl.click());
+      dropEl.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); inputEl.click(); } });
+      ['dragenter', 'dragover'].forEach(ev => dropEl.addEventListener(ev, (e) => { e.preventDefault(); dropEl.classList.add('over'); }));
+      ['dragleave', 'drop'].forEach(ev => dropEl.addEventListener(ev, (e) => { e.preventDefault(); dropEl.classList.remove('over'); }));
+      dropEl.addEventListener('drop', (e) => { const f = e.dataTransfer.files[0]; if (f) take(f); });
+      inputEl.addEventListener('change', () => { if (inputEl.files[0]) take(inputEl.files[0]); inputEl.value = ''; });
+      reset();
+      return { state, reset };
+    }
+
+    // ================= BOOKS =================
+    let books = [];
+    const bf = $('#book-form'), bList = $('#book-list');
+    async function loadBooks() {
+      try { books = (await api('/api/books')).books; renderBooks(); }
+      catch (err) { setupWarning(err.message); bList.innerHTML = ''; }
+    }
+    function renderBooks() {
+      const q = $('#book-search').value.trim().toLowerCase();
+      const list = books.filter(b => !q || [b.title, b.author, b.genre].join(' ').toLowerCase().includes(q));
+      $('#book-count').textContent = books.length + ' books';
+      $('#genres').innerHTML = [...new Set(books.map(b => b.genre).filter(Boolean))].sort().map(g => `<option value="${esc(g)}">`).join('');
+      bList.innerHTML = list.map(b => `<div class="box row" data-id="${b.id}">
+          <div class="main"><h4>${esc(b.title)}</h4><div class="sub">${esc(b.author)}${b.genre ? ' · ' + esc(b.genre) : ''}${b.status !== 'finished' ? ' · <em>' + esc(b.status) + '</em>' : ''}</div></div>
+          <div class="acts"><button class="btn btn-line btn-sm" data-act="edit">Edit</button><button class="btn btn-danger btn-sm" data-act="del">Delete</button></div>
+        </div>`).join('') || '<p class="muted">No books yet.</p>';
+    }
+    $('#book-search').addEventListener('input', renderBooks);
+    bList.addEventListener('click', async (e) => {
+      const btn = e.target.closest('[data-act]'); if (!btn) return;
+      const id = Number(btn.closest('.row').dataset.id);
+      const b = books.find(x => x.id === id);
+      if (btn.dataset.act === 'edit') {
+        for (const k of ['id', 'title', 'subtitle', 'author', 'genre', 'status', 'notes']) bf.elements[k].value = b[k] ?? '';
+        $('#book-form-title').textContent = 'Edit book'; $('#book-submit').textContent = 'Save changes'; $('#book-cancel').hidden = false;
+        bf.scrollIntoView({ behavior: 'smooth', block: 'start' }); bf.elements.title.focus();
+      } else if (confirm(`Delete "${b.title}"?`)) {
+        try { await api('/api/books/' + id, { method: 'DELETE' }); books = books.filter(x => x.id !== id); renderBooks(); }
+        catch (err) { alert(err.message); }
+      }
+    });
+    function resetBookForm() { bf.reset(); bf.elements.id.value = ''; $('#book-form-title').textContent = 'Add a book'; $('#book-submit').textContent = 'Add book'; $('#book-cancel').hidden = true; }
+    $('#book-cancel').addEventListener('click', resetBookForm);
+    bf.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const f = bf.elements, id = f.id.value;
+      const payload = { title: f.title.value, subtitle: f.subtitle.value, author: f.author.value, genre: f.genre.value, status: f.status.value, notes: f.notes.value };
+      $('#book-submit').disabled = true; setStatus($('#book-status'), 'Saving…', true);
+      try {
+        const d = id ? await api('/api/books/' + id, { method: 'PUT', json: payload }) : await api('/api/books', { method: 'POST', json: payload });
+        if (id) books = books.map(x => x.id === d.book.id ? d.book : x); else books.unshift(d.book);
+        renderBooks(); resetBookForm(); setStatus($('#book-status'), id ? 'Saved.' : 'Added “' + d.book.title + '”.', true);
+      } catch (err) { setStatus($('#book-status'), err.message, false); }
+      $('#book-submit').disabled = false;
+    });
+
+    // ================= ART =================
+    let art = [];
+    const af = $('#art-form'), aList = $('#art-list');
+    const artDrop = makeDrop($('#art-drop'), $('#art-file'), $('#art-status'), (st) => { if (!af.elements.title.value) af.elements.title.value = st.name; }, 'Drop a photo here, or click to choose one.');
+    async function loadArt() {
+      try { art = (await api('/api/art')).art; renderArt(); }
+      catch (err) { setupWarning(err.message); aList.innerHTML = ''; }
+    }
+    function renderArt() {
+      $('#art-count').textContent = art.length + ' pieces';
+      aList.innerHTML = art.map(a => `<div class="box row" data-id="${a.id}">
+          <img src="${esc(Site.imageUrl(a.image_key))}" alt="">
+          <div class="main"><h4>${esc(a.title)}</h4><div class="sub">${esc(a.medium)}${a.year ? ' · ' + esc(a.year) : ''}${a.image_key.startsWith('images/') ? ' · file in repo' : ''}</div></div>
+          <div class="acts"><button class="btn btn-line btn-sm" data-act="edit">Edit</button><button class="btn btn-danger btn-sm" data-act="del">Delete</button></div>
+        </div>`).join('') || '<p class="muted">No paintings yet.</p>';
+    }
+    aList.addEventListener('click', async (e) => {
+      const btn = e.target.closest('[data-act]'); if (!btn) return;
+      const id = Number(btn.closest('.row').dataset.id);
+      const a = art.find(x => x.id === id);
+      if (btn.dataset.act === 'edit') {
+        for (const k of ['id', 'title', 'medium', 'year', 'caption']) af.elements[k].value = a[k] ?? '';
+        $('#art-drop-wrap').hidden = true; $('#art-form-title').textContent = 'Edit painting'; $('#art-submit').textContent = 'Save changes'; $('#art-cancel').hidden = false;
+        af.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else if (confirm(`Delete "${a.title}"? This removes the uploaded image too.`)) {
+        try { await api('/api/art/' + id, { method: 'DELETE' }); art = art.filter(x => x.id !== id); renderArt(); }
+        catch (err) { alert(err.message); }
+      }
+    });
+    function resetArtForm() {
+      af.reset(); af.elements.id.value = ''; artDrop.reset();
+      $('#art-drop-wrap').hidden = false;
+      $('#art-form-title').textContent = 'Upload a painting'; $('#art-submit').textContent = 'Upload'; $('#art-cancel').hidden = true;
+    }
+    $('#art-cancel').addEventListener('click', resetArtForm);
+    af.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const f = af.elements, id = f.id.value;
+      $('#art-submit').disabled = true;
+      try {
+        if (id) {
+          const d = await api('/api/art/' + id, { method: 'PUT', json: { title: f.title.value, medium: f.medium.value, year: f.year.value, caption: f.caption.value } });
+          art = art.map(x => x.id === d.art.id ? d.art : x); renderArt(); resetArtForm(); setStatus($('#art-status'), 'Saved.', true);
+        } else {
+          if (!artDrop.state.file) throw new Error('Choose an image first.');
+          setStatus($('#art-status'), 'Uploading…', true);
+          const fd = new FormData();
+          fd.append('image', artDrop.state.file); fd.append('title', f.title.value); fd.append('medium', f.medium.value);
+          fd.append('year', f.year.value); fd.append('caption', f.caption.value);
+          fd.append('width', artDrop.state.dims.width); fd.append('height', artDrop.state.dims.height);
+          const d = await api('/api/art', { method: 'POST', body: fd });
+          art.unshift(d.art); renderArt(); resetArtForm(); setStatus($('#art-status'), 'Uploaded “' + d.art.title + '”.', true);
+        }
+      } catch (err) { setStatus($('#art-status'), err.message, false); }
+      $('#art-submit').disabled = false;
+    });
+
+    // ================= PROJECTS =================
+    let projects = [];
+    const pf = $('#proj-form'), pList = $('#proj-list');
+    const projDrop = makeDrop($('#proj-drop'), $('#proj-file'), $('#proj-status'), null, 'Drop a photo of the build here, or click to choose one.');
+    async function loadProjects() {
+      try { projects = (await api('/api/projects')).projects; renderProjects(); }
+      catch (err) { setupWarning(err.message); pList.innerHTML = ''; }
+    }
+    function renderProjects() {
+      $('#proj-count').textContent = projects.length + ' projects';
+      pList.innerHTML = projects.map((p, i) => `<div class="box row" data-id="${p.id}">
+          ${p.image_key ? `<img src="${esc(Site.imageUrl(p.image_key))}" alt="">` : '<div style="width:56px;height:56px;border:1px dashed var(--rule-strong);flex:none"></div>'}
+          <div class="main"><h4>${String(i + 1).padStart(2, '0')} · ${esc(p.name)}</h4><div class="sub">${esc(p.principle || '')}${p.status === 'next' ? ' · <em>next</em>' : ''}</div></div>
+          <div class="acts"><button class="btn btn-line btn-sm" data-act="edit">Edit</button><button class="btn btn-danger btn-sm" data-act="del">Delete</button></div>
+        </div>`).join('') || '<p class="muted">No projects yet.</p>';
+    }
+    pList.addEventListener('click', async (e) => {
+      const btn = e.target.closest('[data-act]'); if (!btn) return;
+      const id = Number(btn.closest('.row').dataset.id);
+      const p = projects.find(x => x.id === id);
+      if (btn.dataset.act === 'edit') {
+        for (const k of ['id', 'name', 'principle', 'description', 'status', 'sort_order']) pf.elements[k].value = p[k] ?? '';
+        pf.elements.remove_image.checked = false;
+        $('#proj-remove-wrap').hidden = !p.image_key;
+        $('#proj-form-title').textContent = 'Edit project'; $('#proj-submit').textContent = 'Save changes'; $('#proj-cancel').hidden = false;
+        pf.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else if (confirm(`Delete "${p.name}"?`)) {
+        try { await api('/api/projects/' + id, { method: 'DELETE' }); projects = projects.filter(x => x.id !== id); renderProjects(); }
+        catch (err) { alert(err.message); }
+      }
+    });
+    function resetProjForm() {
+      pf.reset(); pf.elements.id.value = ''; projDrop.reset();
+      $('#proj-remove-wrap').hidden = true;
+      $('#proj-form-title').textContent = 'Add a project'; $('#proj-submit').textContent = 'Add project'; $('#proj-cancel').hidden = true;
+    }
+    $('#proj-cancel').addEventListener('click', resetProjForm);
+    pf.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const f = pf.elements, id = f.id.value;
+      $('#proj-submit').disabled = true; setStatus($('#proj-status'), 'Saving…', true);
+      try {
+        const fd = new FormData();
+        for (const k of ['name', 'principle', 'description', 'status', 'sort_order']) fd.append(k, f[k].value);
+        if (projDrop.state.file) fd.append('image', projDrop.state.file);
+        if (id && f.remove_image.checked) fd.append('remove_image', '1');
+        const d = id ? await api('/api/projects/' + id, { method: 'PUT', body: fd }) : await api('/api/projects', { method: 'POST', body: fd });
+        if (id) projects = projects.map(x => x.id === d.project.id ? d.project : x); else projects.push(d.project);
+        projects.sort((a, b) => a.sort_order - b.sort_order || a.id - b.id);
+        renderProjects(); resetProjForm(); setStatus($('#proj-status'), id ? 'Saved.' : 'Added “' + d.project.name + '”.', true);
+      } catch (err) { setStatus($('#proj-status'), err.message, false); }
+      $('#proj-submit').disabled = false;
+    });
+  })();
+  </script>
+</body>
+</html>
